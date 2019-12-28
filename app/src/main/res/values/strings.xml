@@ -780,17 +780,17 @@
     </string-array>
     <string-array name="PrefixesNN">
         <item />
-        <item>litt øve</item>
-        <item>snart kvart\u00A0øve</item>
-        <item>kvart øve</item>
+        <item>litt over</item>
+        <item>snart kvart\u00A0over</item>
+        <item>kvart over</item>
+        <item>snart halv</item>
         <item>omlag halv</item>
-        <item>nesten halv</item>
         <item>halv</item>
         <item>halv</item>
         <item>snart kvart\u00A0på</item>
         <item>kvart på</item>
+        <item>snart</item>
         <item>omlag</item>
-        <item>nesten</item>
     </string-array>
     <string-array name="SuffixesNN">
         <item>ish</item>
