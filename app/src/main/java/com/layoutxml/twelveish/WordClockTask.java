@@ -251,6 +251,9 @@ public class WordClockTask extends AsyncTask<Void,Void, WordClockTaskWrapper> {
             case "no":
                 exactTime = context.getResources().getStringArray(R.array.ExactTimesNO)[hours];
                 break;
+            case "nn":
+                exactTime = context.getResources().getStringArray(R.array.ExactTimesNN)[hours];
+                break;
             case "ru":
                 exactTime = context.getResources().getStringArray(R.array.ExactTimesRU)[hours];
                 break;

@@ -105,8 +105,13 @@ public class StringTextViewActivity extends Activity{
         values.add(option);
 
         option = new StringOption();
-        option.setName("Norwegian");
+        option.setName("Norwegian (Bokmål)");
         option.setSymbol("no");
+        values.add(option);
+
+        option = new StringOption();
+        option.setName("Norwegian (Nynorsk)");
+        option.setSymbol("nn");
         values.add(option);
 
         option = new StringOption();
