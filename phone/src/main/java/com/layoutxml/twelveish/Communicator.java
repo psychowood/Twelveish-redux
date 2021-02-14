@@ -20,6 +20,7 @@ import androidx.annotation.NonNull;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.ref.WeakReference;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -40,9 +41,9 @@ public class Communicator implements DataClient.OnDataChangedListener {
     private final String CONFIG_REQUEST_KEY = "rokas-twelveish-cr";
     private final String CONFIG_REQUEST_KEY2 = "rokas-twelveish-cr2";
 
-    private final String PING_FIRE = "rokas-twelveish-fire"; // Request ping
-    private final String PING_ICE = "rokas-twelveish-ice"; // Ping response
-    private final String TIMESTAMP = "rokas-twelveish-timestamp";
+    private final String PING = "rokas-twelveish-ping"; // Request ping
+    private final String PING2 = "rokas-twelveish-ping2"; // Ping response
+    private final String TIMESTAMP = "Timestamp";
 
     private PutDataMapRequest mPutDataMapRequest;
     private Context applicationContext;
@@ -62,6 +63,41 @@ public class Communicator implements DataClient.OnDataChangedListener {
         //initiateHandshake();
     }
 
+    @Override
+    public void onDataChanged(@NonNull DataEventBuffer dataEventBuffer) {
+        for (DataEvent event: dataEventBuffer) {
+            if (event.getType()==DataEvent.TYPE_CHANGED && event.getDataItem().getUri().getPath()!=null && event.getDataItem().getUri().getPath().equals(path)) {
+                Log.d(TAG, "onDataChanged: received something");
+                DataMapItem mDataMapItem = DataMapItem.fromDataItem(event.getDataItem());
+
+                boolean handshake = mDataMapItem.getDataMap().getBoolean(HANDSHAKE_RESPONSE);
+                if (handshake) {
+                    performHandshake(mDataMapItem.getDataMap().getInt(TIMESTAMP));
+                }
+
+                boolean goodbye = mDataMapItem.getDataMap().getBoolean(GOODBYE_KEY);
+                if (isWatchConnected && goodbye) {
+                    disconnect();
+                }
+
+                boolean preferences = mDataMapItem.getDataMap().getBoolean(DATA_REQUEST_KEY2);
+                if(preferences){
+                    receivePreferences(mDataMapItem.getDataMap().getStringArrayList(PREFERENCES_KEY));
+                }
+
+                boolean config = mDataMapItem.getDataMap().getBoolean(CONFIG_REQUEST_KEY2);
+                if (config) {
+                    receiveConfig(mDataMapItem.getDataMap().getStringArray(PREFERENCES_KEY));
+                }
+
+                boolean ping = mDataMapItem.getDataMap().getBoolean(PING2);
+                if(ping){
+                    lastPing = mPutDataMapRequest.getDataMap().getLong(TIMESTAMP);
+                }
+            }
+        }
+    }
+
     public void initiateHandshake() {
         Log.d(TAG, "initiateHandshake");
         setCurrentStatus(false);
@@ -78,6 +114,41 @@ public class Communicator implements DataClient.OnDataChangedListener {
                 mPutDataMapRequest.getDataMap().clear();
             }
         }, 5000);
+    }
+
+    private void performHandshake(int timestamp){
+        Log.d(TAG,"handshake received");
+        setCurrentStatus(true);
+        if (!isWatchConnected) {
+            Toast.makeText(applicationContext, "Watch connected", Toast.LENGTH_SHORT).show();
+            lastPing = timestamp;
+            final Handler pingHandler = new Handler(){};
+            pingHandler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if(isWatchConnected) {
+                        ping();
+                        Long timeSincePing = System.currentTimeMillis() - lastPing;
+                        if(timeSincePing > 15000){
+                            Toast.makeText(applicationContext, "Watch disconnected, retrying", Toast.LENGTH_SHORT).show();
+                            isWatchConnected = false;
+                            initiateHandshake();
+                            lastPing = 0;
+                        }
+                        pingHandler.postDelayed(this, 5000);
+                    }
+
+                }
+            }, 5000);
+        }
+        isWatchConnected = true;
+    }
+
+    private void disconnect() {
+        Toast.makeText(applicationContext, "Watch disconnected", Toast.LENGTH_SHORT).show();
+        isWatchConnected=false;
+        initiateHandshake();
+        lastPing = 0;
     }
 
     private void setCurrentStatus(boolean value) {
@@ -113,7 +184,7 @@ public class Communicator implements DataClient.OnDataChangedListener {
     }
 
     public void ping(){
-        mPutDataMapRequest.getDataMap().putBoolean(PING_FIRE, true);
+        mPutDataMapRequest.getDataMap().putBoolean(PING, true);
         mPutDataMapRequest.getDataMap().putLong(TIMESTAMP, System.currentTimeMillis());
         mPutDataMapRequest.setUrgent();
         final PutDataRequest mPutDataRequest = mPutDataMapRequest.asPutDataRequest();
@@ -183,11 +254,6 @@ public class Communicator implements DataClient.OnDataChangedListener {
             index += 3;
         }
 
-
-        if(preferencesToSend != null){
-            Log.d(TAG, "Preferences found");
-        }
-
         mPutDataMapRequest.getDataMap().putLong("Timestamp", System.currentTimeMillis());
         mPutDataMapRequest.getDataMap().putStringArray(DATA_KEY, preferencesToSend);
         mPutDataMapRequest.setUrgent();
@@ -204,7 +270,7 @@ public class Communicator implements DataClient.OnDataChangedListener {
     }
 
     public void requestPreferences(Context context, WeakReference<WatchPreviewView> listenerActivity) {
-        mPutDataMapRequest.getDataMap().putLong("Timestamp", System.currentTimeMillis());
+        mPutDataMapRequest.getDataMap().putLong(TIMESTAMP, System.currentTimeMillis());
         mPutDataMapRequest.getDataMap().putBoolean(DATA_REQUEST_KEY, true);
         mPutDataMapRequest.setUrgent();
         PutDataRequest mPutDataRequest = mPutDataMapRequest.asPutDataRequest();
@@ -219,10 +285,43 @@ public class Communicator implements DataClient.OnDataChangedListener {
           }, 5000);
     }
 
-   /* public void requestPreferences(Context context, WeakReference<CustomizationScreen> listenerActivity){
-        mPutDataMapRequest.getDataMap().putLong("Timestamp", System.currentTimeMillis());
-        mPutDataMapRequest.getDataMap().putBoolean();
-    }*/
+    public void receivePreferences(ArrayList<String> preferenceArray){
+        Log.d(TAG, "onDataChanged: preferences");
+        SettingsManager settingsManager = new SettingsManager(applicationContext);
+        settingsManager.initializeDefaultBooleans();
+        settingsManager.initializeDefaultIntegers();
+        settingsManager.initializeDefaultStrings();
+        if(preferenceArray != null){
+            for(int i = 0; i < preferenceArray.size(); i+=2){
+                if(settingsManager.stringHashmap.containsKey(preferenceArray.get(i))){
+                    settingsManager.stringHashmap.put(preferenceArray.get(i), preferenceArray.get(i+1));
+                } else if(settingsManager.integerHashmap.containsKey(preferenceArray.get(i))){
+                    settingsManager.integerHashmap.put(preferenceArray.get(i), Integer.valueOf(preferenceArray.get(i+1)));
+                } else if(settingsManager.booleanHashmap.containsKey(preferenceArray.get(i))){
+                    settingsManager.booleanHashmap.put(preferenceArray.get(i), Boolean.valueOf(preferenceArray.get(i+1)));
+                } else {
+                    Log.d(TAG, "Unknown preference key: " + preferenceArray.get(i));
+                }
+            }
+
+            WatchPreviewView previewView = preferenceListener.get();
+            Gson gson = new Gson();
+            HashMap<String, HashMap> settingMap = new HashMap<>();
+            settingMap.put("stringHashMap", settingsManager.stringHashmap);
+            settingMap.put("booleanHashMap", settingsManager.booleanHashmap);
+            settingMap.put("integerHashMap", settingsManager.integerHashmap);
+
+            try {
+                String fileName = previewView.getContext().getFilesDir().toString() + "/test.json";
+                FileWriter writer = new FileWriter(fileName);
+                gson.toJson(settingMap, writer);
+                writer.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            previewView.loadSettings(settingsManager);
+        }
+    }
 
     public void requestConfig(Context context, WeakReference<WatchPreviewView> listenerActivity) {
         Log.d(TAG, "requestConfig");
@@ -241,111 +340,25 @@ public class Communicator implements DataClient.OnDataChangedListener {
         }, 5000);
     }
 
-    @Override
-    public void onDataChanged(@NonNull DataEventBuffer dataEventBuffer) {
-        for (DataEvent event: dataEventBuffer) {
-            if (event.getType()==DataEvent.TYPE_CHANGED && event.getDataItem().getUri().getPath()!=null && event.getDataItem().getUri().getPath().equals(path)) {
-                Log.d(TAG, "onDataChanged: received something");
-                DataMapItem mDataMapItem = DataMapItem.fromDataItem(event.getDataItem());
-                boolean handshake = mDataMapItem.getDataMap().getBoolean(HANDSHAKE_RESPONSE);
-                boolean goodbye = mDataMapItem.getDataMap().getBoolean(GOODBYE_KEY);
-                boolean config = mDataMapItem.getDataMap().getBoolean(CONFIG_REQUEST_KEY2);
-                boolean preferences = mDataMapItem.getDataMap().getBoolean(DATA_REQUEST_KEY2);
-                boolean ping = mDataMapItem.getDataMap().getBoolean(PING_ICE);
-                if (handshake) {
-                    Log.d(TAG,"handshake received");
-                    setCurrentStatus(true);
-                    if (!isWatchConnected) {
-                        Toast.makeText(applicationContext, "Watch connected", Toast.LENGTH_SHORT).show();
-                        lastPing = mDataMapItem.getDataMap().getLong(TIMESTAMP);
-                        final Handler pingHandler = new Handler(){};
-                        pingHandler.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                if(isWatchConnected) {
-                                    ping();
-                                    Long timeSincePing = System.currentTimeMillis() - lastPing;
-                                    if(timeSincePing > 15000){
-                                        Toast.makeText(applicationContext, "Watch disconnected, retrying", Toast.LENGTH_SHORT).show();
-                                        isWatchConnected = false;
-                                        initiateHandshake();
-                                        lastPing = 0;
-                                    }
-                                    pingHandler.postDelayed(this, 5000);
-                                }
-
-                            }
-                        }, 5000);
+    private void receiveConfig(String[] booleanPreferencesTemp) {
+        Log.d(TAG, "receiveConfig");
+        if (booleanPreferencesTemp != null) {
+            if (booleanPreferencesTemp.length == 3) {
+                booleanPreferences = booleanPreferencesTemp;
+                if (previewListener != null) {
+                    if (previewListener.get() != null) {
+                        Log.d(TAG, "onDataChanged: config activity exists");
+                        WatchPreviewView activity = previewListener.get();
+                        activity.receivedDataListener(booleanPreferencesTemp);
                     }
-                    isWatchConnected = true;
-                }
-                if (isWatchConnected && goodbye) {
-                    Toast.makeText(applicationContext, "Watch disconnected", Toast.LENGTH_SHORT).show();
-                    isWatchConnected=false;
-                    initiateHandshake();
-                    lastPing = 0;
-                }
-
-                 if(preferences){
-                    Log.d(TAG, "onDataChanged: preferences");
-                    String[] newPreferences = mDataMapItem.getDataMap().getStringArray(PREFERENCES_KEY);
-                    SettingsManager settingsManager = new SettingsManager(applicationContext);
-                    settingsManager.initializeDefaultBooleans();
-                    settingsManager.initializeDefaultIntegers();
-                    settingsManager.initializeDefaultStrings();
-                    if(newPreferences != null){
-                        for(int i = 0; i < newPreferences.length; i+=2){
-                            if(settingsManager.stringHashmap.containsKey(newPreferences[i])){
-                                settingsManager.stringHashmap.put(newPreferences[i], newPreferences[i+1]);
-                            } else if(settingsManager.integerHashmap.containsKey(newPreferences[i])){
-                                settingsManager.integerHashmap.put(newPreferences[i], Integer.valueOf(newPreferences[i+1]));
-                            } else if(settingsManager.booleanHashmap.containsKey(newPreferences[i])){
-                                settingsManager.booleanHashmap.put(newPreferences[i], Boolean.valueOf(newPreferences[i+1]));
-                            } else {
-                                Log.d(TAG, "Unknown preference key: " + newPreferences[i]);
-                            }
-                        }
-
-                        WatchPreviewView previewView = preferenceListener.get();
-                        Gson gson = new Gson();
-                        HashMap<String, HashMap> settingMap = new HashMap<>();
-                        settingMap.put("stringHashMap", settingsManager.stringHashmap);
-                        settingMap.put("booleanHashMap", settingsManager.booleanHashmap);
-                        settingMap.put("integerHashMap", settingsManager.integerHashmap);
-
-                        try {
-                            String fileName = previewView.getContext().getFilesDir().toString() + "/test.json";
-                            FileWriter writer = new FileWriter(fileName);
-                            gson.toJson(settingMap, writer);
-                            writer.close();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                        previewView.loadSettings(settingsManager);
-                    }
-                }
-
-                if (config) {
-                    Log.d(TAG, "onDataChanged: config");
-                    String[] booleanPreferencesTemp = mDataMapItem.getDataMap().getStringArray(PREFERENCES_KEY);
-                    if (booleanPreferencesTemp != null) {
-                        if (booleanPreferencesTemp.length == 3) {
-                            booleanPreferences = booleanPreferencesTemp;
-                            if (previewListener != null) {
-                                if (previewListener.get() != null) {
-                                    Log.d(TAG, "onDataChanged: config activity exists");
-                                    WatchPreviewView activity = previewListener.get();
-                                    activity.receivedDataListener(booleanPreferencesTemp);
-                                }
-                            }
-                        }
-                    }
-                }
-
-                if(ping){
-                    lastPing = mPutDataMapRequest.getDataMap().getLong(TIMESTAMP);
                 }
             }
         }
     }
+
+
+
+
+
+
 }
