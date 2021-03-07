@@ -5,6 +5,11 @@ import android.os.Handler;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+
+import com.google.android.gms.wearable.DataClient;
+import com.google.android.gms.wearable.DataEvent;
+import com.google.android.gms.wearable.DataEventBuffer;
 import com.google.android.gms.wearable.DataItem;
 import com.google.android.gms.wearable.DataMapItem;
 import com.google.android.gms.wearable.PutDataMapRequest;
@@ -13,12 +18,14 @@ import com.google.android.gms.wearable.Wearable;
 
 import lombok.Getter;
 
-public class Communicator {
+public class Communicator implements DataClient.OnDataChangedListener{
     private static final String TAG = "Communicator";
     @Getter
     private final String path = "/twelveish";
     private final String DATA_KEY = "rokas-twelveish";
-    private final String HANDSHAKE_KEY = "rokas-twelveish-hs";
+    // private final String HANDSHAKE_KEY = "rokas-twelveish-hs";
+    private final String HANDSHAKE_REQUEST = "rokas-twelveish-hs-req";
+    private final String HANDSHAKE_RESPONSE = "rokas-twelveish-hq-res";
     private final String GOODBYE_KEY = "rokas-twelveish-gb";
     private final String DATA_REQUEST_KEY = "rokas-twelveish-dr";
     private final String DATA_REQUEST_KEY2 = "rokas-twelveish-dr2";
@@ -27,12 +34,17 @@ public class Communicator {
     private final String PREFERENCES_KEY = "rokas-twelveish-pr";
     private final String TIMESTAMP_KEY = "Timestamp";
 
+    private final String PING = "rokas-twelveish-ping";
+    private final String PING2 = "rokas-twelveish-ping2";
+
     private final Context context;
     private final PreferenceManager preferenceManager;
+    private PutDataMapRequest dataMapRequest;
 
     Communicator(Context context, PreferenceManager preferenceManager) {
         this.context = context;
         this.preferenceManager = preferenceManager;
+        dataMapRequest = PutDataMapRequest.create(path);
     }
 
     public void processData(DataItem dataItem) {
@@ -43,8 +55,8 @@ public class Communicator {
             savePreference(array);
         }
 
-        boolean handshake = mDataMapItem.getDataMap().getBoolean(HANDSHAKE_KEY);
-        if (!handshake) {
+        boolean handshake = mDataMapItem.getDataMap().getBoolean(HANDSHAKE_REQUEST);
+        if (handshake) {
             performHandshake();
         }
 
@@ -57,12 +69,37 @@ public class Communicator {
         if (config) {
             sendConfigurationData();
         }
+
+        boolean ping = mDataMapItem.getDataMap().getBoolean(PING);
+        if(ping){
+            echoPing();
+        }
     }
 
+
+
     public void performHandshake() {
+        final PutDataMapRequest mPutDataMapRequest = dataMapRequest;
+        mPutDataMapRequest.getDataMap().putLong(TIMESTAMP_KEY, System.currentTimeMillis());
+        mPutDataMapRequest.getDataMap().putBoolean(HANDSHAKE_REQUEST, false);
+        mPutDataMapRequest.getDataMap().putBoolean(HANDSHAKE_RESPONSE, true);
+        mPutDataMapRequest.setUrgent();
+        PutDataRequest mPutDataRequest = mPutDataMapRequest.asPutDataRequest();
+        Wearable.getDataClient(context).putDataItem(mPutDataRequest);
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mPutDataMapRequest.getDataMap().clear();
+            }
+        }, 5000);
+    }
+
+    private void echoPing() {
         final PutDataMapRequest mPutDataMapRequest = PutDataMapRequest.create(path);
         mPutDataMapRequest.getDataMap().putLong(TIMESTAMP_KEY, System.currentTimeMillis());
-        mPutDataMapRequest.getDataMap().putBoolean(HANDSHAKE_KEY, true);
+        mPutDataMapRequest.getDataMap().putBoolean(PING, false);
+        mPutDataMapRequest.getDataMap().putBoolean(PING2, true);
         mPutDataMapRequest.setUrgent();
         PutDataRequest mPutDataRequest = mPutDataMapRequest.asPutDataRequest();
         Wearable.getDataClient(context).putDataItem(mPutDataRequest);
@@ -93,24 +130,29 @@ public class Communicator {
     private void savePreference(String[] preferenceArray) {
         // TODO: create a listener in WatchFace class to force refresh
         log("savePreference");
-        switch (preferenceArray[2]) {
-            case "String":
-                preferenceManager.saveString(preferenceArray[0], preferenceArray[1]);
-                break;
-            case "Integer":
-                try {
-                    int value = Integer.parseInt(preferenceArray[1]);
-                    preferenceManager.saveInt(preferenceArray[0], value);
-                } catch (NumberFormatException e) {
-                    log("Preference error");
-                }
-                break;
-            case "Boolean":
-                boolean value = Boolean.parseBoolean(preferenceArray[1]);
-                preferenceManager.saveBoolean(preferenceArray[0], value);
-            default:
-                log("Unknown type in processData");
-                break;
+
+        for(int i = 0; i<preferenceArray.length; i+=3){
+            switch(preferenceArray[i+2]){
+                case "String":
+                    preferenceManager.saveString(preferenceArray[i], preferenceArray[i+1]);
+                    break;
+                case "Integer":
+                    try{
+                        int value = Integer.parseInt(preferenceArray[i+1]);
+                        preferenceManager.saveInt(preferenceArray[i], value);
+                    } catch (NumberFormatException e){
+                        log("Preference error");
+                    }
+                    break;
+                case "Boolean":
+                    boolean value = Boolean.parseBoolean(preferenceArray[i+1]);
+                    preferenceManager.saveBoolean(preferenceArray[i], value);
+                    break;
+                default:
+                    log("Unknown type in processData");
+                    break;
+            }
+
         }
     }
 
@@ -158,5 +200,15 @@ public class Communicator {
     private void log(String message) {
         Log.d(TAG, message);
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onDataChanged(@NonNull DataEventBuffer dataEventBuffer) {
+        for (DataEvent event : dataEventBuffer) {
+            if (event.getType() == DataEvent.TYPE_CHANGED && event.getDataItem().getUri().getPath() != null && event.getDataItem().getUri().getPath().equals(path)) {
+                DataItem dataItem = event.getDataItem();
+                processData(dataItem);
+            }
+        }
     }
 }

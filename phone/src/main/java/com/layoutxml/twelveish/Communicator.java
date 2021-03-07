@@ -72,7 +72,7 @@ public class Communicator implements DataClient.OnDataChangedListener {
 
                 boolean handshake = mDataMapItem.getDataMap().getBoolean(HANDSHAKE_RESPONSE);
                 if (handshake) {
-                    performHandshake(mDataMapItem.getDataMap().getInt(TIMESTAMP));
+                    receiveHandshake(mDataMapItem.getDataMap().getInt(TIMESTAMP));
                 }
 
                 boolean goodbye = mDataMapItem.getDataMap().getBoolean(GOODBYE_KEY);
@@ -83,6 +83,7 @@ public class Communicator implements DataClient.OnDataChangedListener {
                 boolean preferences = mDataMapItem.getDataMap().getBoolean(DATA_REQUEST_KEY2);
                 if(preferences){
                     receivePreferences(mDataMapItem.getDataMap().getStringArrayList(PREFERENCES_KEY));
+                    // receivePreferences(mDataMapItem.getDataMap().getStringArray(PREFERENCES_KEY));
                 }
 
                 boolean config = mDataMapItem.getDataMap().getBoolean(CONFIG_REQUEST_KEY2);
@@ -92,7 +93,7 @@ public class Communicator implements DataClient.OnDataChangedListener {
 
                 boolean ping = mDataMapItem.getDataMap().getBoolean(PING2);
                 if(ping){
-                    lastPing = mPutDataMapRequest.getDataMap().getLong(TIMESTAMP);
+                    lastPing = mPutDataMapRequest.getDataMap().getInt(TIMESTAMP);
                 }
             }
         }
@@ -102,7 +103,7 @@ public class Communicator implements DataClient.OnDataChangedListener {
         Log.d(TAG, "initiateHandshake");
         setCurrentStatus(false);
 
-        mPutDataMapRequest.getDataMap().putLong("Timestamp", System.currentTimeMillis());
+        mPutDataMapRequest.getDataMap().putLong(TIMESTAMP, System.currentTimeMillis());
         mPutDataMapRequest.getDataMap().putBoolean(HANDSHAKE_REQUEST, true);
         mPutDataMapRequest.setUrgent();
         PutDataRequest mPutDataRequest = mPutDataMapRequest.asPutDataRequest();
@@ -116,12 +117,11 @@ public class Communicator implements DataClient.OnDataChangedListener {
         }, 5000);
     }
 
-    private void performHandshake(int timestamp){
+    private void receiveHandshake(int timestamp){
         Log.d(TAG,"handshake received");
         setCurrentStatus(true);
         if (!isWatchConnected) {
             Toast.makeText(applicationContext, "Watch connected", Toast.LENGTH_SHORT).show();
-            lastPing = timestamp;
             final Handler pingHandler = new Handler(){};
             pingHandler.postDelayed(new Runnable() {
                 @Override
@@ -185,7 +185,8 @@ public class Communicator implements DataClient.OnDataChangedListener {
 
     public void ping(){
         mPutDataMapRequest.getDataMap().putBoolean(PING, true);
-        mPutDataMapRequest.getDataMap().putLong(TIMESTAMP, System.currentTimeMillis());
+        long timestamp = System.currentTimeMillis();
+        mPutDataMapRequest.getDataMap().putLong(TIMESTAMP, timestamp);
         mPutDataMapRequest.setUrgent();
         final PutDataRequest mPutDataRequest = mPutDataMapRequest.asPutDataRequest();
         Wearable.getDataClient(applicationContext).putDataItem(mPutDataRequest);
@@ -301,6 +302,45 @@ public class Communicator implements DataClient.OnDataChangedListener {
                     settingsManager.booleanHashmap.put(preferenceArray.get(i), Boolean.valueOf(preferenceArray.get(i+1)));
                 } else {
                     Log.d(TAG, "Unknown preference key: " + preferenceArray.get(i));
+                }
+            }
+
+            WatchPreviewView previewView = preferenceListener.get();
+            Gson gson = new Gson();
+            HashMap<String, HashMap> settingMap = new HashMap<>();
+            settingMap.put("stringHashMap", settingsManager.stringHashmap);
+            settingMap.put("booleanHashMap", settingsManager.booleanHashmap);
+            settingMap.put("integerHashMap", settingsManager.integerHashmap);
+
+            try {
+                String fileName = previewView.getContext().getFilesDir().toString() + "/test.json";
+                FileWriter writer = new FileWriter(fileName);
+                gson.toJson(settingMap, writer);
+                writer.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            previewView.loadSettings(settingsManager);
+        }
+    }
+
+    public void receivePreferences(String[] preferenceArray){
+        Log.d(TAG, "onDataChanged: preferences");
+        String[] newPreferences = preferenceArray;
+        SettingsManager settingsManager = new SettingsManager(applicationContext);
+        settingsManager.initializeDefaultBooleans();
+        settingsManager.initializeDefaultIntegers();
+        settingsManager.initializeDefaultStrings();
+        if(newPreferences != null){
+            for(int i = 0; i < newPreferences.length; i+=2){
+                if(settingsManager.stringHashmap.containsKey(newPreferences[i])){
+                    settingsManager.stringHashmap.put(newPreferences[i], newPreferences[i+1]);
+                } else if(settingsManager.integerHashmap.containsKey(newPreferences[i])){
+                    settingsManager.integerHashmap.put(newPreferences[i], Integer.valueOf(newPreferences[i+1]));
+                } else if(settingsManager.booleanHashmap.containsKey(newPreferences[i])){
+                    settingsManager.booleanHashmap.put(newPreferences[i], Boolean.valueOf(newPreferences[i+1]));
+                } else {
+                    Log.d(TAG, "Unknown preference key: " + newPreferences[i]);
                 }
             }
 

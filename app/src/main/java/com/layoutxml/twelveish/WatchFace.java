@@ -26,6 +26,8 @@ import androidx.annotation.NonNull;
 import com.google.android.gms.wearable.DataClient;
 import com.google.android.gms.wearable.DataEvent;
 import com.google.android.gms.wearable.DataEventBuffer;
+import com.google.android.gms.wearable.DataItem;
+import com.google.android.gms.wearable.DataMapItem;
 import com.google.android.gms.wearable.Wearable;
 import com.layoutxml.twelveish.objects.TextGeneratorDataWrapper;
 
@@ -94,7 +96,7 @@ public class WatchFace extends CanvasWatchFaceService {
         }
     }
 
-    private class Engine extends CanvasWatchFaceService.Engine implements DataClient.OnDataChangedListener, TextGeneratorListener {
+    private class Engine extends CanvasWatchFaceService.Engine implements TextGeneratorListener {
         private final Handler updateTimeHandler = new EngineHandler(this);
         private Calendar calendar;
         private boolean registeredTimeZoneReceiver = false;
@@ -233,12 +235,12 @@ public class WatchFace extends CanvasWatchFaceService {
                 forceRefresh();
                 registerReceiver();
                 calendar.setTimeZone(TimeZone.getDefault());
-                Wearable.getDataClient(getApplicationContext()).addListener(this);
+                Wearable.getDataClient(getApplicationContext()).addListener(communicator);
 
                 communicator.performHandshake();
             } else {
                 unregisterReceiver();
-                Wearable.getDataClient(getApplicationContext()).removeListener(this);
+                Wearable.getDataClient(getApplicationContext()).removeListener(communicator);
             }
             updateTimer();
         }
@@ -330,6 +332,8 @@ public class WatchFace extends CanvasWatchFaceService {
                 fetchMainText = true;
                 getDate();
             }
+
+            getDate();
 
             //Get digital clock
             String ampmSymbols = (!preferenceManager.isMilitaryFormatDigital()) ? (calendar.get(Calendar.HOUR_OF_DAY) >= 12 ? " pm" : " am") : "";
@@ -450,11 +454,34 @@ public class WatchFace extends CanvasWatchFaceService {
             return isVisible() && !ambientMode;
         }
 
-        @Override
+
         public void onDataChanged(@NonNull DataEventBuffer dataEventBuffer) {
             for (DataEvent event : dataEventBuffer) {
                 if (event.getType() == DataEvent.TYPE_CHANGED && event.getDataItem().getUri().getPath() != null && event.getDataItem().getUri().getPath().equals(communicator.getPath())) {
-                    communicator.processData(event.getDataItem());
+                    DataItem dataItem = event.getDataItem();
+                    communicator.processData(dataItem);
+                    DataMapItem mDataMapItem = DataMapItem.fromDataItem(dataItem);
+
+                     final String DATA_KEY = "rokas-twelveish";
+                    // private final String HANDSHAKE_KEY = "rokas-twelveish-hs";
+                     final String HANDSHAKE_REQUEST = "rokas-twelveish-hs-req";
+                     final String HANDSHAKE_RESPONSE = "rokas-twelveish-hq-res";
+                     final String GOODBYE_KEY = "rokas-twelveish-gb";
+                     final String DATA_REQUEST_KEY = "rokas-twelveish-dr";
+                     final String DATA_REQUEST_KEY2 = "rokas-twelveish-dr2";
+                     final String CONFIG_REQUEST_KEY = "rokas-twelveish-cr";
+                     final String CONFIG_REQUEST_KEY2 = "rokas-twelveish-cr2";
+                     final String PREFERENCES_KEY = "rokas-twelveish-pr";
+                     final String TIMESTAMP_KEY = "Timestamp";
+
+                     final String PING = "rokas-twelveish-ping";
+                     final String PING2 = "rokas-twelveish-ping2";
+
+                    String[] array = mDataMapItem.getDataMap().getStringArray(DATA_KEY);
+                    boolean handshake = mDataMapItem.getDataMap().getBoolean(HANDSHAKE_REQUEST);
+                    boolean preferences = mDataMapItem.getDataMap().getBoolean(DATA_REQUEST_KEY);
+                    boolean config = mDataMapItem.getDataMap().getBoolean(CONFIG_REQUEST_KEY);
+                    boolean ping = mDataMapItem.getDataMap().getBoolean(PING);
                     forceRefresh();
                 }
             }

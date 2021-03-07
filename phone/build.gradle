@@ -27,6 +27,14 @@ android {
         }
     }
 
+    sourceSets{
+        main{
+            java{
+                exclude "**/MyWatchFace.java"
+            }
+        }
+    }
+
 }
 
 dependencies {

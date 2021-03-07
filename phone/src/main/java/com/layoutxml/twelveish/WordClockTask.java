@@ -423,21 +423,26 @@ public class WordClockTask extends AsyncTask<Void,Void, WordClockTaskWrapper> {
                 String[] suffArray = Prefixes[index].split("\\u00A0");
 
                 for (String word : suffArray){
-                    if(suffString.length() != 0) // No suffix has more than two parts separated by a non-break space
-                        suffString.append("\u00A0");
+                    if(!word.equalsIgnoreCase("")){
+                        if(suffString.length() != 0) // No suffix has more than two parts separated by a non-break space
+                            suffString.append("\u00A0");
 
-                    String capitalised = word.substring(0,1).toUpperCase() + word.substring(1);
-                    suffString.append(capitalised);
+
+                        String capitalised = word.substring(0,1).toUpperCase() + word.substring(1);
+                        suffString.append(capitalised);
+                    }
                 }
 
                 if (SuffixNewLine[index]) {
                     String[] suffixArray = suffString.toString().split(" ");
                     suffix = new StringBuilder();
                     for (String word : suffixArray) {
-                        if (suffix.length() != 0)
-                            suffix.append(" ");
-                        String capitalised = word.substring(0, 1).toUpperCase() + word.substring(1);
-                        suffix.append(capitalised);
+                        if(!word.equalsIgnoreCase("")) {
+                            if (suffix.length() != 0)
+                                suffix.append(" ");
+                            String capitalised = word.substring(0, 1).toUpperCase() + word.substring(1);
+                            suffix.append(capitalised);
+                        }
                     }
                     mainSuffix = suffix.toString();
                 } else {
