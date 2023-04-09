@@ -52,7 +52,7 @@ import com.google.android.gms.wearable.DataMapItem;
 import com.google.android.gms.wearable.PutDataMapRequest;
 import com.google.android.gms.wearable.PutDataRequest;
 import com.google.android.gms.wearable.Wearable;
-import com.layoutxml.twelveish.config.ComplicationConfigActivity;
+import com.layoutxml.twelveish.activities.ComplicationConfigActivity;
 import com.layoutxml.twelveish.activities.list_activities.ActivityImageViewActivity;
 import com.layoutxml.twelveish.objects.WordClockTaskWrapper;
 
