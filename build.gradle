@@ -2,6 +2,12 @@
 
 buildscript {
     
+    ext {
+        applicationId = 'com.psychowood.twelveishredux'
+        versionCode = 362
+        versionName = '2.4.1'
+    }
+
     repositories {
         google()
         jcenter()

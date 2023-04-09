@@ -6,15 +6,19 @@
 
 apply plugin: 'com.android.application'
 
+def getVersionName = { return versionName }
+def getVersionCode = { return versionCode }
+def getApplicationId = { return applicationId }
+
 android {
     compileSdkVersion 29
 
     defaultConfig {
-        applicationId "com.layoutxml.twelveish"
+        applicationId getApplicationId()
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 357
-        versionName "2.4.0"
+        versionCode getVersionCode()
+        versionName getVersionName()
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 

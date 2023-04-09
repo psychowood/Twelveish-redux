@@ -1,13 +1,17 @@
 apply plugin: 'com.android.application'
 
+def getVersionName = { return versionName }
+def getVersionCode = { return versionCode }
+def getApplicationId = { return applicationId }
+
 android {
     compileSdkVersion 29
     defaultConfig {
-        applicationId "com.layoutxml.twelveish"
+        applicationId getApplicationId()
         minSdkVersion 23
         targetSdkVersion 29
-        versionCode 358
-        versionName "2.4.0"
+        versionCode getVersionCode()
+        versionName getVersionName()
         multiDexEnabled true
     }
     buildTypes {
