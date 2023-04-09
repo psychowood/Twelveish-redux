@@ -11,12 +11,12 @@ def getVersionCode = { return versionCode }
 def getApplicationId = { return applicationId }
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 33
 
     defaultConfig {
         applicationId getApplicationId()
-        minSdkVersion 21
-        targetSdkVersion 29
+        minSdkVersion 23
+        targetSdkVersion 33
         versionCode getVersionCode()
         versionName getVersionName()
 
@@ -30,6 +30,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    namespace 'com.layoutxml.twelveish'
 
 }
 

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.layoutxml.twelveish">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <uses-feature android:name="android.hardware.type.watch" />
 
@@ -49,7 +48,6 @@
                 <category android:name="com.google.android.wearable.watchface.category.WATCH_FACE" />
                 <action android:name="com.rokasjankunas.ticktock.TRANSITION_TO_AMBIENT_MODE"/>
                 <action android:name="com.rokasjankunas.ticktock.TRANSITION_TO_INTERACTIVE_MODE"/>
-                <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </service>
 
@@ -60,6 +58,8 @@
                 <action android:name="com.example.android.wearable.watchface.CONFIG_DIGITAL"/>
                 <category android:name="com.google.android.wearable.watchface.category.WEARABLE_CONFIGURATION"/>
                 <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
         <activity android:name=".activities.list_activities.BooleanSwitcherActivity" />
