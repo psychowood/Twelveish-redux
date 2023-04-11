@@ -1,8 +1,8 @@
-# Twelveish - Watch face for Wear OS (Android Wear)
+# Twelveish (redux) - Watch face for Wear OS (Android Wear)
 
 <img src="app/src/main/ic_launcher-web.png" width="192" alt="Twelveish Watch Face for Wear OS (Android Wear) - Logo">
 
-Twelveish is a unique Wear OS (Android Wear) Watch Face that displays the **approximate time in words** (in multiple languages). It also shows the exact time (digital clock) and day of the week on the top, date and battery percentage slightly below, a complication on the bottom (on all Wear OS versions and Android Wear versions 2.0 and greater). On top of that, Twelveish is **extremely customizable, completely free and open-source**.
+Twelveish (redux) is a project to bring back to recent Wear OS (Android Wear) watches a unique Watch Face that displays the **approximate time in words** (in multiple languages). It also shows the exact time (digital clock) and day of the week on the top, date and battery percentage slightly below, a complication on the bottom (on all Wear OS versions and Android Wear versions 2.0 and greater). On top of that, Twelveish is **extremely customizable, completely free and open-source**.
 
 <img src="screenshots/Twelveish-1.png" width="256" alt="Twelveish Watch Face for Wear OS (Android Wear) - Screenshot1" align="left">
 
@@ -10,11 +10,12 @@ Twelveish is a unique Wear OS (Android Wear) Watch Face that displays the **appr
 
 <img src="screenshots/Twelveish-3.png" width="256" alt="Twelveish Watch Face for Wear OS (Android Wear) - Screenshot3">
 
-### [Download on the Google Play store](https://play.google.com/store/apps/details?id=com.layoutxml.twelveish).
+### [Download on the Google Play store (in progress)](https://play.google.com/store/apps/details?id=com.psychowood.twelveishredux).
 
 ## Foreword
 
-Project was started before learning any best practises or gaining experiance through work or studies and was intended to gain this experience. There are many things I would change and refactor if I were to start this project again. For now, it stays as a reminder of where it all started.
+Original project was created by [@LayoutXML](https://github.com/LayoutXML/Twelveish) and later updated by [@augustuen](https://github.com/augustuen/Twelveish). 
+Since the Play Store version is not working on my Wear OS 3 watch, I decide to hammer it - my Android development skills are less-than-basic at best - and publish it.
 
 ## Features
 
@@ -38,11 +39,11 @@ Most of the settings above can be set to be different for active and ambient mod
 
 ## Installation
 
-You can install Twelveish directly from your computer. Method below describes how to run Twelveish directly from the code and not how to sideload already precompiled .apk file. Instructions assume your watch (or phone) is connected to your computer (either via USB, Wi-Fi, Bluetooth or else). You can always install Twelveish directly from your watch (Wear OS and Android Wear version 2.0 and greater) or by installing companion app on your phone first. [Download on the Google Play store](https://play.google.com/store/apps/details?id=com.layoutxml.twelveish).
+You can install Twelveish directly from your computer. Method below describes how to run Twelveish directly from the code and not how to sideload already precompiled .apk file. Instructions assume your watch (or phone) is connected to your computer (either via USB, Wi-Fi, Bluetooth or else). You can always install Twelveish directly from your watch (Wear OS and Android Wear version 2.0 and greater) or by installing companion app on your phone first. [Download on the Google Play store](https://play.google.com/store/apps/details?id=com.psychowood.twelveishredux).
 
 ### Prerequisites
 
-* Android SDK v28
+* Android SDK v30
 * Latest Android Build Tools
 * Android Support Repository
 * Latest Android Studio (recommended) or other IDE

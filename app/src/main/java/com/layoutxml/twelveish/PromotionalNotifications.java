@@ -69,8 +69,8 @@ public class PromotionalNotifications {
 
     private void showRateNotification() {
         String title = "Rate Twelveish";
-        String content = "Would you like to rate Twelveish? Tap to go to the Google Play store.";
-        Intent viewIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.layoutxml.twelveish"));
+        String content = "Would you like to rate Twelveish redux? Tap to go to the Google Play store.";
+        Intent viewIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.psychowood.twelveishredux"));
         viewIntent.putExtra(title, content);
         showNotification(1, viewIntent, title, content);
         showedRateAlready = true;

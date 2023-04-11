@@ -377,15 +377,15 @@ public class MyWatchFace extends CanvasWatchFaceService {
         private void showRateNotification() {
             int notificationId = 1;
             String id = "Main";
-            Intent viewIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.layoutxml.twelveish"));
-            viewIntent.putExtra("Rate Twelveish", "Would you like to rate Twelveish? I won't ask again :)");
+            Intent viewIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.psychowood.twelveishredux"));
+            viewIntent.putExtra("Rate Twelveish redux", "Would you like to rate Twelveish redux? I won't ask again :)");
             PendingIntent viewPendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, viewIntent, 0);
             NotificationCompat.Builder notificationBuilder =
                     new NotificationCompat.Builder(getApplicationContext(), id)
                             .setDefaults(Notification.DEFAULT_ALL)
                             .setSmallIcon(R.mipmap.ic_launcher)
-                            .setContentTitle("Rate Twelveish")
-                            .setContentText("Would you like to rate Twelveish? Tap to go to the Google Play store.")
+                            .setContentTitle("Rate Twelveish redux")
+                            .setContentText("Would you like to rate Twelveish redux? Tap to go to the Google Play store.")
                             .setContentIntent(viewPendingIntent);
             NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getApplicationContext());
             notificationManager.notify(notificationId, notificationBuilder.build());
