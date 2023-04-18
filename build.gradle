@@ -4,7 +4,7 @@ buildscript {
     
     ext {
         applicationId = 'com.psychowood.twelveishredux'
-        versionCode = 364
+        versionCode = 365
         versionName = '2.4.1'
     }
 
