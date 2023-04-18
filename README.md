@@ -46,7 +46,7 @@ You can install Twelveish directly from your computer. Method below describes ho
 * Android SDK v30
 * Latest Android Build Tools
 * Android Support Repository
-* Latest Android Studio (recommended) or other IDE
+* Latest Android Studio (recommended) or other IDE, with Lombok plugin installed
 * Developer options and ADB debugging enabled
 
 ### Installing
