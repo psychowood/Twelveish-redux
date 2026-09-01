@@ -90,3 +90,5 @@ fastlane/readme.md
 /app/release/
 /phone/release/
 
+/.idea
+/.artifacts
