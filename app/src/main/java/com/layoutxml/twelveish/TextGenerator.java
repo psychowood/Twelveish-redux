@@ -48,6 +48,10 @@ public class TextGenerator extends AsyncTask<Void, Void, TextGeneratorDataWrappe
 
     @Override
     protected TextGeneratorDataWrapper doInBackground(Void... voids) {
+        return generateSync();
+    }
+
+    public TextGeneratorDataWrapper generateSync() {
         String text = generateText();
         float textSize = calculateOptimalFontSizeForString(text);
         float baseXCoordinate = calculateBaseXCoordinate();
@@ -114,11 +118,12 @@ public class TextGenerator extends AsyncTask<Void, Void, TextGeneratorDataWrappe
         float minSize = Float.MAX_VALUE;
         for (String line : splitTextByLines) {
             paint.getTextBounds(line, 0, line.length(), bounds);
+            if (bounds.width() == 0 || bounds.height() == 0) continue;
             float maxSizeByWidth = initialSize * desiredWidth / bounds.width();
             float maxSizeByHeight = initialSize * desiredHeight / bounds.height();
             minSize = Math.min(Math.min(maxSizeByWidth, maxSizeByHeight), minSize);
         }
-        return minSize;
+        return minSize == Float.MAX_VALUE ? initialSize : minSize;
     }
 
     private float calculateBaseXCoordinate() {
@@ -150,6 +155,7 @@ public class TextGenerator extends AsyncTask<Void, Void, TextGeneratorDataWrappe
             String[] splitLineBySpaces = line.split(" ");
             boolean firstWordInLine = true;
             for (String word : splitLineBySpaces) {
+                if (word.isEmpty()) continue;
                 if (firstWordInLine) {
                     firstWordInLine = false;
                 } else {
@@ -162,8 +168,12 @@ public class TextGenerator extends AsyncTask<Void, Void, TextGeneratorDataWrappe
             }
             finalText.append('\n');
         }
-
-        return finalText.toString().substring(0, finalText.length() - 1);
+        
+        if (finalText.length() > 0) {
+            return finalText.toString().substring(0, finalText.length() - 1);
+        } else {
+            return "";
+        }
     }
 
     private String formatUppercaseText() {
@@ -176,6 +186,7 @@ public class TextGenerator extends AsyncTask<Void, Void, TextGeneratorDataWrappe
 
     private String formatFirstTitleCaseText() {
         String unprocessedText = formatUnprocessedArrangedText();
+        if (unprocessedText.isEmpty()) return "";
         return unprocessedText.substring(0, 1).toUpperCase() + unprocessedText.substring(1).toLowerCase();
     }
 
@@ -185,10 +196,15 @@ public class TextGenerator extends AsyncTask<Void, Void, TextGeneratorDataWrappe
         String[] splitText = unprocessedText.split("\n");
         StringBuilder finalText = new StringBuilder();
         for (String line : splitText) {
+            if (line.isEmpty()) continue;
             finalText.append(line.substring(0, 1).toUpperCase()).append(line.substring(1).toLowerCase()).append('\n');
         }
 
-        return finalText.toString().substring(0, finalText.length() - 1);
+        if (finalText.length() > 0) {
+            return finalText.toString().substring(0, finalText.length() - 1);
+        } else {
+            return "";
+        }
     }
 
     private String formatUnprocessedArrangedText() {
@@ -261,9 +277,9 @@ public class TextGenerator extends AsyncTask<Void, Void, TextGeneratorDataWrappe
 
         if (hourIndex < 0) {
             if (preferenceManager.isMilitaryFormatText()) {
-                hourIndex = 24 - hourIndex;
+                hourIndex = 24 + hourIndex; // Fixed bug from original: was 24 - hourIndex where hourIndex is negative
             } else {
-                hourIndex = 12 - hourIndex;
+                hourIndex = 12 + hourIndex;
             }
         }
 
