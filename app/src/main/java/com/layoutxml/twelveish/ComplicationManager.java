@@ -1,47 +1,26 @@
 package com.layoutxml.twelveish;
 
-import android.app.PendingIntent;
-import android.content.ComponentName;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.os.Build;
-import android.support.wearable.complications.ComplicationData;
-import android.support.wearable.complications.ComplicationHelperActivity;
-import android.support.wearable.complications.rendering.ComplicationDrawable;
+import androidx.wear.watchface.complications.data.ComplicationData;
+import androidx.wear.watchface.complications.rendering.ComplicationDrawable;
 import android.util.SparseArray;
 
-import com.layoutxml.twelveish.activities.ComplicationConfigActivity;
+import java.time.Instant;
 
 public class ComplicationManager {
-    private static final int BOTTOM_COMPLICATION_ID = 0;
-    private static final int LEFT_COMPLICATION_ID = 1;
-    private static final int RIGHT_COMPLICATION_ID = 2;
+    public enum ComplicationLocation {
+        BOTTOM,
+        LEFT,
+        RIGHT
+    }
+    public static final int BOTTOM_COMPLICATION_ID = 0;
+    public static final int LEFT_COMPLICATION_ID = 1;
+    public static final int RIGHT_COMPLICATION_ID = 2;
     private static final int[] COMPLICATION_IDS = {BOTTOM_COMPLICATION_ID, LEFT_COMPLICATION_ID, RIGHT_COMPLICATION_ID};
-    private static final int[][] COMPLICATION_SUPPORTED_TYPES = {
-            {
-                    ComplicationData.TYPE_RANGED_VALUE,
-                    ComplicationData.TYPE_ICON,
-                    ComplicationData.TYPE_LONG_TEXT,
-                    ComplicationData.TYPE_SHORT_TEXT,
-                    ComplicationData.TYPE_SMALL_IMAGE,
-                    ComplicationData.TYPE_LARGE_IMAGE
-            },
-            {
-                    ComplicationData.TYPE_RANGED_VALUE,
-                    ComplicationData.TYPE_ICON,
-                    ComplicationData.TYPE_SHORT_TEXT,
-                    ComplicationData.TYPE_SMALL_IMAGE
-            },
-            {
-                    ComplicationData.TYPE_RANGED_VALUE,
-                    ComplicationData.TYPE_ICON,
-                    ComplicationData.TYPE_SHORT_TEXT,
-                    ComplicationData.TYPE_SMALL_IMAGE
-            }
-    };
-
+    
     private final Context context;
     private final PreferenceManager preferenceManager;
 
@@ -53,7 +32,7 @@ public class ComplicationManager {
         this.preferenceManager = preferenceManager;
     }
 
-    public static int getComplicationId(ComplicationConfigActivity.ComplicationLocation complicationLocation) {
+    public static int getComplicationId(ComplicationLocation complicationLocation) {
         switch (complicationLocation) {
             case BOTTOM:
                 return BOTTOM_COMPLICATION_ID;
@@ -70,17 +49,35 @@ public class ComplicationManager {
         return COMPLICATION_IDS;
     }
 
-    public static int[] getSupportedComplicationTypes(ComplicationConfigActivity.ComplicationLocation complicationLocation) {
+    public static int[] getSupportedComplicationTypes(ComplicationLocation complicationLocation) {
         switch (complicationLocation) {
             case BOTTOM:
-                return COMPLICATION_SUPPORTED_TYPES[0];
+                return new int[]{
+                        5, // RANGED_VALUE
+                        6, // ICON
+                        4, // LONG_TEXT
+                        3, // SHORT_TEXT
+                        7, // SMALL_IMAGE
+                        8  // LARGE_IMAGE
+                };
             case LEFT:
-                return COMPLICATION_SUPPORTED_TYPES[1];
             case RIGHT:
-                return COMPLICATION_SUPPORTED_TYPES[2];
+                return new int[]{
+                        5, // RANGED_VALUE
+                        6, // ICON
+                        3, // SHORT_TEXT
+                        7  // SMALL_IMAGE
+                };
             default:
                 return new int[]{};
         }
+    }
+
+    public ComplicationDrawable getDrawable(int id) {
+        if (mComplicationDrawableSparseArray != null) {
+            return mComplicationDrawableSparseArray.get(id);
+        }
+        return null;
     }
 
     public void initializeComplications() {
@@ -89,38 +86,30 @@ public class ComplicationManager {
         }
 
         mActiveComplicationDataSparseArray = new SparseArray<>(COMPLICATION_IDS.length);
-        ComplicationDrawable bottomComplicationDrawable = (ComplicationDrawable) context.getDrawable(R.drawable.custom_complication_styles);
-        ComplicationDrawable leftComplicationDrawable = (ComplicationDrawable) context.getDrawable(R.drawable.custom_complication_styles);
-        ComplicationDrawable rightComplicationDrawable = (ComplicationDrawable) context.getDrawable(R.drawable.custom_complication_styles);
-        assert bottomComplicationDrawable != null;
-        bottomComplicationDrawable.setContext(context);
-        assert leftComplicationDrawable != null;
-        leftComplicationDrawable.setContext(context);
-        assert rightComplicationDrawable != null;
-        rightComplicationDrawable.setContext(context);
         mComplicationDrawableSparseArray = new SparseArray<>(COMPLICATION_IDS.length);
-        mComplicationDrawableSparseArray.put(BOTTOM_COMPLICATION_ID, bottomComplicationDrawable);
-        mComplicationDrawableSparseArray.put(LEFT_COMPLICATION_ID, leftComplicationDrawable);
-        mComplicationDrawableSparseArray.put(RIGHT_COMPLICATION_ID, rightComplicationDrawable);
-
-        ComplicationDrawable complicationDrawable;
-        for (int COMPLICATION_ID : COMPLICATION_IDS) {
-            complicationDrawable = mComplicationDrawableSparseArray.get(COMPLICATION_ID);
-            complicationDrawable.setBackgroundColorActive(preferenceManager.getBackgroundColor());
-            complicationDrawable.setHighlightColorActive(preferenceManager.getSecondaryTextColorActive());
-            complicationDrawable.setHighlightColorAmbient(preferenceManager.getSecondaryTextColorAmbient());
-            complicationDrawable.setIconColorActive(preferenceManager.getSecondaryTextColorActive());
-            complicationDrawable.setIconColorAmbient(preferenceManager.getSecondaryTextColorAmbient());
-            complicationDrawable.setTextColorActive(preferenceManager.getSecondaryTextColorActive());
-            complicationDrawable.setTextColorAmbient(preferenceManager.getSecondaryTextColorAmbient());
-            complicationDrawable.setRangedValuePrimaryColorActive(preferenceManager.getSecondaryTextColorActive());
-            complicationDrawable.setRangedValuePrimaryColorAmbient(preferenceManager.getSecondaryTextColorAmbient());
-            complicationDrawable.setRangedValueSecondaryColorActive(preferenceManager.getSecondaryTextColorActive());
-            complicationDrawable.setRangedValueSecondaryColorAmbient(preferenceManager.getSecondaryTextColorAmbient());
-            complicationDrawable.setRangedValueRingWidthActive(preferenceManager.getSecondaryTextColorActive());
-            complicationDrawable.setRangedValueRingWidthAmbient(preferenceManager.getSecondaryTextColorAmbient());
-            complicationDrawable.setTitleColorActive(preferenceManager.getSecondaryTextColorActive());
-            complicationDrawable.setTitleColorAmbient(preferenceManager.getSecondaryTextColorAmbient());
+        
+        for (int complicationId : COMPLICATION_IDS) {
+            ComplicationDrawable drawable = ComplicationDrawable.getDrawable(context, R.drawable.custom_complication_styles);
+            if (drawable != null) {
+                drawable.setContext(context);
+                mComplicationDrawableSparseArray.put(complicationId, drawable);
+                
+                drawable.getActiveStyle().setBackgroundColor(preferenceManager.getBackgroundColor());
+                drawable.getActiveStyle().setHighlightColor(preferenceManager.getSecondaryTextColorActive());
+                drawable.getAmbientStyle().setHighlightColor(preferenceManager.getSecondaryTextColorAmbient());
+                drawable.getActiveStyle().setIconColor(preferenceManager.getSecondaryTextColorActive());
+                drawable.getAmbientStyle().setIconColor(preferenceManager.getSecondaryTextColorAmbient());
+                drawable.getActiveStyle().setTextColor(preferenceManager.getSecondaryTextColorActive());
+                drawable.getAmbientStyle().setTextColor(preferenceManager.getSecondaryTextColorAmbient());
+                drawable.getActiveStyle().setRangedValuePrimaryColor(preferenceManager.getSecondaryTextColorActive());
+                drawable.getAmbientStyle().setRangedValuePrimaryColor(preferenceManager.getSecondaryTextColorAmbient());
+                drawable.getActiveStyle().setRangedValueSecondaryColor(preferenceManager.getSecondaryTextColorActive());
+                drawable.getAmbientStyle().setRangedValueSecondaryColor(preferenceManager.getSecondaryTextColorAmbient());
+                drawable.getActiveStyle().setRangedValueRingWidth(preferenceManager.getSecondaryTextColorActive());
+                drawable.getAmbientStyle().setRangedValueRingWidth(preferenceManager.getSecondaryTextColorAmbient());
+                drawable.getActiveStyle().setTitleColor(preferenceManager.getSecondaryTextColorActive());
+                drawable.getAmbientStyle().setTitleColor(preferenceManager.getSecondaryTextColorAmbient());
+            }
         }
     }
 
@@ -129,12 +118,12 @@ public class ComplicationManager {
             return;
         }
 
-        int complicationId;
-        ComplicationDrawable complicationDrawable;
-        for (int COMPLICATION_ID : COMPLICATION_IDS) {
-            complicationId = COMPLICATION_ID;
-            complicationDrawable = mComplicationDrawableSparseArray.get(complicationId);
-            complicationDrawable.draw(canvas, currentTimeMillis);
+        for (int complicationId : COMPLICATION_IDS) {
+            ComplicationDrawable complicationDrawable = mComplicationDrawableSparseArray.get(complicationId);
+            if (complicationDrawable != null) {
+                complicationDrawable.setCurrentTime(Instant.ofEpochMilli(currentTimeMillis));
+                complicationDrawable.draw(canvas);
+            }
         }
     }
 
@@ -143,9 +132,11 @@ public class ComplicationManager {
             return;
         }
 
-        int tappedComplicationId = getTappedComplicationId(x, y);
-        if (tappedComplicationId != -1) {
-            onComplicationTap(tappedComplicationId);
+        for (int complicationId : COMPLICATION_IDS) {
+            ComplicationDrawable complicationDrawable = mComplicationDrawableSparseArray.get(complicationId);
+            if (complicationDrawable != null && complicationDrawable.onTap(x, y)) {
+                return;
+            }
         }
     }
 
@@ -154,10 +145,11 @@ public class ComplicationManager {
             return;
         }
 
-        ComplicationDrawable complicationDrawable;
-        for (int COMPLICATION_ID : COMPLICATION_IDS) {
-            complicationDrawable = mComplicationDrawableSparseArray.get(COMPLICATION_ID);
-            complicationDrawable.setInAmbientMode(isAmbient);
+        for (int complicationId : COMPLICATION_IDS) {
+            ComplicationDrawable complicationDrawable = mComplicationDrawableSparseArray.get(complicationId);
+            if (complicationDrawable != null) {
+                complicationDrawable.setInAmbientMode(isAmbient);
+            }
         }
     }
 
@@ -171,66 +163,29 @@ public class ComplicationManager {
                 width / 2 + width / 4,
                 (int) (height - chinSize));
         Rect leftBounds = new Rect(0,
-                height * 3 / 8,
+                (int)(height * 3 / 8.0f),
                 width / 4,
-                height * 5 / 8);
-        Rect rightBounds = new Rect(width * 3 / 4,
-                height * 3 / 8,
+                (int)(height * 5 / 8.0f));
+        Rect rightBounds = new Rect((int)(width * 3 / 4.0f),
+                (int)(height * 3 / 8.0f),
                 width,
-                height * 5 / 8);
-        ComplicationDrawable bottomComplicationDrawable = mComplicationDrawableSparseArray.get(BOTTOM_COMPLICATION_ID);
-        bottomComplicationDrawable.setBounds(bottomBounds);
-        ComplicationDrawable leftComplicationDrawable = mComplicationDrawableSparseArray.get(LEFT_COMPLICATION_ID);
-        leftComplicationDrawable.setBounds(leftBounds);
-        ComplicationDrawable rightComplicationDrawable = mComplicationDrawableSparseArray.get(RIGHT_COMPLICATION_ID);
-        rightComplicationDrawable.setBounds(rightBounds);
+                (int)(height * 5 / 8.0f));
+        
+        if (mComplicationDrawableSparseArray.get(BOTTOM_COMPLICATION_ID) != null)
+            mComplicationDrawableSparseArray.get(BOTTOM_COMPLICATION_ID).setBounds(bottomBounds);
+        if (mComplicationDrawableSparseArray.get(LEFT_COMPLICATION_ID) != null)
+            mComplicationDrawableSparseArray.get(LEFT_COMPLICATION_ID).setBounds(leftBounds);
+        if (mComplicationDrawableSparseArray.get(RIGHT_COMPLICATION_ID) != null)
+            mComplicationDrawableSparseArray.get(RIGHT_COMPLICATION_ID).setBounds(rightBounds);
     }
 
     public void updateData(int id, ComplicationData data) {
-        mActiveComplicationDataSparseArray.put(id, data);
-        ComplicationDrawable complicationDrawable = mComplicationDrawableSparseArray.get(id);
-        complicationDrawable.setComplicationData(data);
-    }
-
-    private int getTappedComplicationId(int x, int y) {
-        int complicationId;
-        ComplicationData complicationData;
-        ComplicationDrawable complicationDrawable;
-        long currentTimeMillis = System.currentTimeMillis();
-        for (int COMPLICATION_ID : COMPLICATION_IDS) {
-            complicationId = COMPLICATION_ID;
-            complicationData = mActiveComplicationDataSparseArray.get(complicationId);
-            if ((complicationData != null)
-                    && (complicationData.isActive(currentTimeMillis))
-                    && (complicationData.getType() != ComplicationData.TYPE_NOT_CONFIGURED)
-                    && (complicationData.getType() != ComplicationData.TYPE_EMPTY)) {
-                complicationDrawable = mComplicationDrawableSparseArray.get(complicationId);
-                Rect complicationBoundingRect = complicationDrawable.getBounds();
-                if (complicationBoundingRect.width() > 0) {
-                    if (complicationBoundingRect.contains(x, y)) {
-                        return complicationId;
-                    }
-                }
-            }
-        }
-        return -1;
-    }
-
-    private void onComplicationTap(int complicationId) {
-        ComplicationData complicationData = mActiveComplicationDataSparseArray.get(complicationId);
-        if (complicationData != null) {
-            if (complicationData.getTapAction() != null) {
-                try {
-                    complicationData.getTapAction().send();
-                } catch (PendingIntent.CanceledException ignored) {
-                }
-            } else {
-                if (complicationData.getType() == ComplicationData.TYPE_NO_PERMISSION) {
-                    ComponentName componentName = new ComponentName(context, WatchFace.class);
-                    Intent permissionRequestIntent = ComplicationHelperActivity.createPermissionRequestHelperIntent(context, componentName);
-                    permissionRequestIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    context.startActivity(permissionRequestIntent);
-                }
+        if (mActiveComplicationDataSparseArray != null)
+            mActiveComplicationDataSparseArray.put(id, data);
+        if (mComplicationDrawableSparseArray != null) {
+            ComplicationDrawable complicationDrawable = mComplicationDrawableSparseArray.get(id);
+            if (complicationDrawable != null) {
+                complicationDrawable.setComplicationData(data, false);
             }
         }
     }

@@ -11,12 +11,12 @@ def getVersionCode = { return versionCode }
 def getApplicationId = { return applicationId }
 
 android {
-    compileSdkVersion 33
+    compileSdk 37
 
     defaultConfig {
         applicationId getApplicationId()
-        minSdkVersion 23
-        targetSdkVersion 33
+        minSdkVersion 26
+        targetSdk 34
         versionCode getVersionCode()
         versionName getVersionName()
 
@@ -27,7 +27,7 @@ android {
     buildTypes {
         release {
             minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
     namespace 'com.layoutxml.twelveish'
@@ -36,16 +36,16 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'androidx.appcompat:appcompat:1.3.0-alpha01'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    implementation 'com.google.code.gson:gson:2.8.5'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.2.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-    implementation 'androidx.recyclerview:recyclerview:1.2.0-alpha03'
+    implementation 'androidx.appcompat:appcompat:1.7.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.2.2'
+    implementation 'com.google.code.gson:gson:2.14.0'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test:runner:1.7.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.7.0'
+    implementation 'androidx.recyclerview:recyclerview:1.4.0'
     wearApp project(':app')
-    implementation 'com.google.android.gms:play-services-wearable:17.0.0'
-    implementation 'com.google.android.material:material:1.1.0'
-    implementation 'com.google.dagger:dagger:2.22.1'
-    annotationProcessor 'com.google.dagger:dagger-compiler:2.22.1'
+    implementation 'com.google.android.gms:play-services-wearable:20.0.1'
+    implementation 'com.google.android.material:material:1.12.0'
+    implementation 'com.google.dagger:dagger:2.60.1'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.60.1'
 }

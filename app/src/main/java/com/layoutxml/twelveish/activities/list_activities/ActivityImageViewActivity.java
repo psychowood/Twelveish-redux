@@ -6,34 +6,44 @@
 
 package com.layoutxml.twelveish.activities.list_activities;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.wear.widget.WearableLinearLayoutManager;
-import androidx.wear.widget.WearableRecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.activity.ComponentActivity;
+import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.wear.watchface.editor.ListenableEditorSession;
+import androidx.wear.widget.WearableLinearLayoutManager;
+import androidx.wear.widget.WearableRecyclerView;
+
+import com.google.common.util.concurrent.FutureCallback;
+import com.google.common.util.concurrent.Futures;
+import com.google.common.util.concurrent.ListenableFuture;
 import com.layoutxml.twelveish.R;
 import com.layoutxml.twelveish.activities.AboutActivity;
-import com.layoutxml.twelveish.activities.FontSizeInfoActivity;
 import com.layoutxml.twelveish.activities.ComplicationConfigActivity;
+import com.layoutxml.twelveish.activities.FontSizeActivity;
+import com.layoutxml.twelveish.activities.FontSizeInfoActivity;
 import com.layoutxml.twelveish.objects.ActivityOption;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ActivityImageViewActivity extends Activity {
+public class ActivityImageViewActivity extends ComponentActivity {
+    private static final String TAG = "ActivityImageView";
 
     private List<ActivityOption> values = new ArrayList<>();
     private SettingsAdapter mAdapter;
+    private ListenableEditorSession editorSession;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -48,6 +58,22 @@ public class ActivityImageViewActivity extends Activity {
         mWearableRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mWearableRecyclerView.setAdapter(mAdapter);
         generateValues();
+
+        ListenableFuture<ListenableEditorSession> sessionFuture = ListenableEditorSession.listenableCreateOnWatchEditorSession(this);
+        Futures.addCallback(sessionFuture, new FutureCallback<ListenableEditorSession>() {
+            @Override
+            public void onSuccess(ListenableEditorSession result) {
+                if (result != null) {
+                    Log.d(TAG, "Editor session created");
+                    editorSession = result;
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                Log.e(TAG, "Failed to create editor session", t);
+            }
+        }, ContextCompat.getMainExecutor(this));
     }
 
     private void generateValues(){
@@ -73,49 +99,41 @@ public class ActivityImageViewActivity extends Activity {
         values.add(activityOption);
 
         activityOption = new ActivityOption();
-        activityOption.setName("Date format");
+        activityOption.setName("Date");
         activityOption.setIcon(R.drawable.ic_datep);
         activityOption.setActivity(ActivityTextViewActivity.class);
         activityOption.setExtra("DateOptionsList");
         values.add(activityOption);
 
         activityOption = new ActivityOption();
-        activityOption.setName("Capitalisation");
-        activityOption.setIcon(R.drawable.ic_capitalisationp);
-        activityOption.setActivity(IntegerTextViewOptionsActivity.class);
-        activityOption.setExtra("Capitalization");
-        values.add(activityOption);
-
-        activityOption = new ActivityOption();
-        activityOption.setName("Show/hide elements");
-        activityOption.setIcon(R.drawable.ic_showhidep);
-        activityOption.setActivity(BooleanSwitcherActivity.class);
-        activityOption.setExtra("ShowHide");
-        values.add(activityOption);
-
-        activityOption = new ActivityOption();
-        activityOption.setName("Language");
-        activityOption.setIcon(R.drawable.ic_languagep);
-        activityOption.setActivity(StringTextViewActivity.class);
-        activityOption.setExtra("Language");
-        values.add(activityOption);
-
-        activityOption = new ActivityOption();
-        activityOption.setName("Text size offset");
-        activityOption.setIcon(R.drawable.ic_capitalisationp);
-        activityOption.setActivity(FontSizeInfoActivity.class);
-        activityOption.setExtra("TextSize");
-        values.add(activityOption);
-
-        activityOption = new ActivityOption();
-        activityOption.setName("Miscellaneous");
+        activityOption.setName("Font size");
         activityOption.setIcon(R.drawable.ic_miscp);
-        activityOption.setActivity(BooleanSwitcherActivity.class);
-        activityOption.setExtra("MiscOptions");
+        activityOption.setActivity(FontSizeActivity.class);
         values.add(activityOption);
 
         activityOption = new ActivityOption();
-        activityOption.setName("Info");
+        activityOption.setName("Time");
+        activityOption.setIcon(R.drawable.ic_languagep);
+        activityOption.setActivity(IntegerTextViewOptionsActivity.class);
+        activityOption.setExtra("TimeOptionsList");
+        values.add(activityOption);
+
+        activityOption = new ActivityOption();
+        activityOption.setName("Show");
+        activityOption.setIcon(R.drawable.ic_showhidep);
+        activityOption.setActivity(IntegerTextViewOptionsActivity.class);
+        activityOption.setExtra("ShowOptionsList");
+        values.add(activityOption);
+
+        activityOption = new ActivityOption();
+        activityOption.setName("Others");
+        activityOption.setIcon(R.drawable.ic_miscp);
+        activityOption.setActivity(IntegerTextViewOptionsActivity.class);
+        activityOption.setExtra("OthersOptionsList");
+        values.add(activityOption);
+
+        activityOption = new ActivityOption();
+        activityOption.setName("About");
         activityOption.setIcon(R.drawable.ic_infop);
         activityOption.setActivity(AboutActivity.class);
         values.add(activityOption);
@@ -139,9 +157,11 @@ public class ActivityImageViewActivity extends Activity {
                     @Override
                     public void onClick(View v) {
                         int position = getAdapterPosition(); // gets item position
-                        Intent intent;
-                        intent = new Intent(ActivityImageViewActivity.this, values.get(position).getActivity());
+                        Intent intent = new Intent(ActivityImageViewActivity.this, values.get(position).getActivity());
                         intent.putExtra("Activity",values.get(position).getExtra());
+                        if (getIntent().getExtras() != null) {
+                            intent.putExtras(getIntent().getExtras());
+                        }
                         ActivityImageViewActivity.this.startActivity(intent);
                     }
                 });
@@ -160,7 +180,6 @@ public class ActivityImageViewActivity extends Activity {
             ActivityOption activityOption = values.get(position);
             holder.name.setText(activityOption.getName());
             holder.icon.setImageResource(activityOption.getIcon());
-
         }
 
         @Override
@@ -168,5 +187,4 @@ public class ActivityImageViewActivity extends Activity {
             return values.size();
         }
     }
-
 }

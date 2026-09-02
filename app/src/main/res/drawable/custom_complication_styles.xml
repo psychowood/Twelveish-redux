@@ -5,11 +5,10 @@
   ~
   -->
 
-<drawable
+<androidx.wear.watchface.complications.rendering.ComplicationDrawable
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    class="android.support.wearable.complications.rendering.ComplicationDrawable"
     app:backgroundColor="@android:color/transparent"
     app:borderColor="@android:color/transparent"
     app:highlightColor="@color/digital_text"
@@ -32,4 +31,4 @@
         app:titleColor="@color/digital_text"
         app:borderColor="@android:color/transparent"
         app:rangedValueSecondaryColor="@android:color/transparent"/>
-</drawable>
+</androidx.wear.watchface.complications.rendering.ComplicationDrawable>

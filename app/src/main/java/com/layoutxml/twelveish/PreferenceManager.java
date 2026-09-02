@@ -86,42 +86,7 @@ public class PreferenceManager {
     }
 
     private void loadFont() {
-        switch (fontName) {
-            case "alegreya":
-                font = ResourcesCompat.getFont(context, R.font.alegreya);
-                break;
-            case "cabin":
-                font = ResourcesCompat.getFont(context, R.font.cabin);
-                break;
-            case "ibmplexsans":
-                font = ResourcesCompat.getFont(context, R.font.ibmplexsans);
-                break;
-            case "inconsolata":
-                font = ResourcesCompat.getFont(context, R.font.inconsolata);
-                break;
-            case "merriweather":
-                font = ResourcesCompat.getFont(context, R.font.merriweather);
-                break;
-            case "nunito":
-                font = ResourcesCompat.getFont(context, R.font.nunito);
-                break;
-            case "pacifico":
-                font = ResourcesCompat.getFont(context, R.font.pacifico);
-                break;
-            case "quattrocento":
-                font = ResourcesCompat.getFont(context, R.font.quattrocento);
-                break;
-            case "quicksand":
-                font = ResourcesCompat.getFont(context, R.font.quicksand);
-                break;
-            case "rubik":
-                font = ResourcesCompat.getFont(context, R.font.rubik);
-                break;
-            default:
-                // robotolight
-                font = Typeface.create("sans-serif-light", Typeface.NORMAL);
-                break;
-        }
+        font = Typeface.create("sans-serif-light", Typeface.NORMAL);
     }
 
     public ArrayList<String> getPreferencesList() {

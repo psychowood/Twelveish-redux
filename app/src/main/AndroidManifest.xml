@@ -21,9 +21,11 @@
             android:value="true" />
 
         <service
-            android:name=".WatchFace"
+            android:name="com.layoutxml.twelveish.WatchFace"
             android:label="@string/my_digital_name"
-            android:permission="android.permission.BIND_WALLPAPER">
+            android:permission="android.permission.BIND_WALLPAPER"
+            android:exported="true"
+            android:directBootAware="true">
             <meta-data
                 android:name="android.service.wallpaper"
                 android:resource="@xml/watch_face" />
@@ -37,12 +39,12 @@
                 android:name=
                     "com.google.android.wearable.watchface.wearableConfigurationAction"
                 android:value=
-                    "com.example.android.wearable.watchface.CONFIG_DIGITAL" />
+                    "androidx.wear.watchface.editor.action.WATCH_FACE_EDITOR" />
             <meta-data
                 android:name=
                     "com.google.android.wearable.watchface.companionConfigurationAction"
                 android:value=
-                    "com.example.android.wearable.watchface.CONFIG_DIGITAL" />
+                    "androidx.wear.watchface.editor.action.WATCH_FACE_EDITOR" />
             <intent-filter>
                 <action android:name="android.service.wallpaper.WallpaperService" />
                 <category android:name="com.google.android.wearable.watchface.category.WATCH_FACE" />
@@ -53,13 +55,17 @@
 
         <activity
             android:name=".activities.list_activities.ActivityImageViewActivity"
-            android:label="@string/digital_config_name">
+            android:label="@string/digital_config_name"
+            android:exported="true">
             <intent-filter>
+                <action android:name="androidx.wear.watchface.editor.action.WATCH_FACE_EDITOR"/>
                 <action android:name="com.example.android.wearable.watchface.CONFIG_DIGITAL"/>
                 <category android:name="com.google.android.wearable.watchface.category.WEARABLE_CONFIGURATION"/>
                 <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".activities.list_activities.BooleanSwitcherActivity" />
@@ -67,7 +73,8 @@
         <activity android:name=".activities.list_activities.IntegerTextViewOptionsActivity" />
         <activity
             android:name=".activities.ComplicationConfigActivity"
-            android:label="@string/digital_config_name">
+            android:label="@string/digital_config_name"
+            android:exported="true">
         </activity>
         <activity android:name="android.support.wearable.complications.ComplicationHelperActivity"/>
         <activity android:name=".activities.list_activities.ActivityTextViewActivity" />
