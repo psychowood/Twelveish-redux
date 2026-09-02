@@ -59,21 +59,25 @@ public class ActivityImageViewActivity extends ComponentActivity {
         mWearableRecyclerView.setAdapter(mAdapter);
         generateValues();
 
-        ListenableFuture<ListenableEditorSession> sessionFuture = ListenableEditorSession.listenableCreateOnWatchEditorSession(this);
-        Futures.addCallback(sessionFuture, new FutureCallback<ListenableEditorSession>() {
-            @Override
-            public void onSuccess(ListenableEditorSession result) {
-                if (result != null) {
-                    Log.d(TAG, "Editor session created");
-                    editorSession = result;
+        if ("androidx.wear.watchface.editor.action.WATCH_FACE_EDITOR".equals(getIntent().getAction())) {
+            ListenableFuture<ListenableEditorSession> sessionFuture = ListenableEditorSession.listenableCreateOnWatchEditorSession(this);
+            Futures.addCallback(sessionFuture, new FutureCallback<ListenableEditorSession>() {
+                @Override
+                public void onSuccess(ListenableEditorSession result) {
+                    if (result != null) {
+                        Log.d(TAG, "Editor session created");
+                        editorSession = result;
+                    }
                 }
-            }
 
-            @Override
-            public void onFailure(Throwable t) {
-                Log.e(TAG, "Failed to create editor session", t);
-            }
-        }, ContextCompat.getMainExecutor(this));
+                @Override
+                public void onFailure(Throwable t) {
+                    Log.e(TAG, "Failed to create editor session", t);
+                }
+            }, ContextCompat.getMainExecutor(this));
+        } else {
+            Log.d(TAG, "Not an editor session: " + getIntent().getAction());
+        }
     }
 
     private void generateValues(){

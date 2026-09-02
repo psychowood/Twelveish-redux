@@ -67,21 +67,25 @@ public class ComplicationConfigActivity extends ComponentActivity implements Vie
 
         updateComplicationViews();
 
-        ListenableFuture<ListenableEditorSession> sessionFuture = ListenableEditorSession.listenableCreateOnWatchEditorSession(this);
-        Futures.addCallback(sessionFuture, new FutureCallback<ListenableEditorSession>() {
-            @Override
-            public void onSuccess(ListenableEditorSession result) {
-                if (result != null) {
-                    Log.d(TAG, "Editor session created");
-                    editorSession = result;
+        if (getIntent().getExtras() != null && getIntent().getExtras().containsKey("androidx.wear.watchface.editor.extra.WATCH_FACE_COMPONENT")) {
+            ListenableFuture<ListenableEditorSession> sessionFuture = ListenableEditorSession.listenableCreateOnWatchEditorSession(this);
+            Futures.addCallback(sessionFuture, new FutureCallback<ListenableEditorSession>() {
+                @Override
+                public void onSuccess(ListenableEditorSession result) {
+                    if (result != null) {
+                        Log.d(TAG, "Editor session created");
+                        editorSession = result;
+                    }
                 }
-            }
 
-            @Override
-            public void onFailure(Throwable t) {
-                Log.e(TAG, "Failed to create editor session", t);
-            }
-        }, ContextCompat.getMainExecutor(this));
+                @Override
+                public void onFailure(Throwable t) {
+                    Log.e(TAG, "Failed to create editor session", t);
+                }
+            }, ContextCompat.getMainExecutor(this));
+        } else {
+            Log.d(TAG, "No editor session extras found");
+        }
     }
 
     @Override
