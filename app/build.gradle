@@ -5,11 +5,11 @@ def getVersionCode = { return versionCode }
 def getApplicationId = { return applicationId }
 
 android {
-    compileSdk 35
+    compileSdk 37
     defaultConfig {
         applicationId getApplicationId()
         minSdkVersion 26
-        targetSdk 33
+        targetSdk 35
         versionCode getVersionCode()
         versionName getVersionName()
         multiDexEnabled true

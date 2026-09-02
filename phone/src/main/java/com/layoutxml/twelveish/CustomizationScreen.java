@@ -1,15 +1,18 @@
 package com.layoutxml.twelveish;
 
 import android.os.Bundle;
-import android.provider.Settings;
 import android.util.JsonReader;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import androidx.activity.EdgeToEdge;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.fragment.app.FragmentTransaction;
@@ -18,7 +21,6 @@ import androidx.viewpager.widget.ViewPager;
 import com.google.android.gms.wearable.Wearable;
 import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.layoutxml.twelveish.adapters.OptionsPagerAdapter;
 import com.layoutxml.twelveish.dagger.App;
 import com.layoutxml.twelveish.dagger.DaggerSettingsManagerComponent;
@@ -29,9 +31,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.lang.reflect.Type;
 import java.util.HashMap;
-import java.util.List;
 
 import javax.inject.Inject;
 
@@ -47,8 +47,15 @@ public class CustomizationScreen extends AppCompatActivity implements View.OnCli
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        EdgeToEdge.enable(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.customize_screen);
+
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
 
         communicator = ((App) getApplication()).getCommunicatorComponent().getCommunicator();
         communicator.initiateHandshake();

@@ -8,7 +8,12 @@ import android.util.Log;
 import android.util.Pair;
 import android.view.View;
 
+import androidx.activity.EdgeToEdge;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -18,7 +23,7 @@ import com.layoutxml.twelveish.adapters.ImageRecyclerViewAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ColorSelectionActivity extends Activity implements ImageRecyclerViewAdapter.ItemClickImageListener {
+public class ColorSelectionActivity extends AppCompatActivity implements ImageRecyclerViewAdapter.ItemClickImageListener {
 
     private ImageRecyclerViewAdapter adapter;
     private String settingsName = "colorSelectionList";
@@ -27,8 +32,15 @@ public class ColorSelectionActivity extends Activity implements ImageRecyclerVie
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        EdgeToEdge.enable(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.color_selection_activity);
+
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
 
         colorOptions = new ArrayList<>();
         //white-black

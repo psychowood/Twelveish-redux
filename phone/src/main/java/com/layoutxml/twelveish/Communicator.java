@@ -2,6 +2,7 @@ package com.layoutxml.twelveish;
 
 import android.content.Context;
 import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -71,7 +72,7 @@ public class Communicator implements DataClient.OnDataChangedListener {
         mPutDataMapRequest.setUrgent();
         PutDataRequest mPutDataRequest = mPutDataMapRequest.asPutDataRequest();
         Wearable.getDataClient(applicationContext).putDataItem(mPutDataRequest);
-        final Handler handler = new Handler();
+        final Handler handler = new Handler(Looper.getMainLooper());
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -87,7 +88,7 @@ public class Communicator implements DataClient.OnDataChangedListener {
                 //Start timer
                 currentStatus = false;
 
-                Handler handler = new Handler();
+                Handler handler = new Handler(Looper.getMainLooper());
                 handler.postDelayed(new Runnable() {
                     public void run() {
                         if (!currentStatus) {
@@ -118,7 +119,7 @@ public class Communicator implements DataClient.OnDataChangedListener {
         mPutDataMapRequest.setUrgent();
         final PutDataRequest mPutDataRequest = mPutDataMapRequest.asPutDataRequest();
         Wearable.getDataClient(applicationContext).putDataItem(mPutDataRequest);
-        final Handler handler = new Handler();
+        final Handler handler = new Handler(Looper.getMainLooper());
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -137,7 +138,7 @@ public class Communicator implements DataClient.OnDataChangedListener {
         mPutDataMapRequest.setUrgent();
         PutDataRequest mPutDataRequest = mPutDataMapRequest.asPutDataRequest();
         Wearable.getDataClient(context).putDataItem(mPutDataRequest);
-        final Handler handler = new Handler();
+        final Handler handler = new Handler(Looper.getMainLooper());
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -193,7 +194,7 @@ public class Communicator implements DataClient.OnDataChangedListener {
         mPutDataMapRequest.setUrgent();
         PutDataRequest mPutDataRequest = mPutDataMapRequest.asPutDataRequest();
         Wearable.getDataClient(context).putDataItem(mPutDataRequest);
-        final Handler handler = new Handler();
+        final Handler handler = new Handler(Looper.getMainLooper());
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -210,7 +211,7 @@ public class Communicator implements DataClient.OnDataChangedListener {
         PutDataRequest mPutDataRequest = mPutDataMapRequest.asPutDataRequest();
         Wearable.getDataClient(context).putDataItem(mPutDataRequest);
         preferenceListener = listenerActivity;
-        final Handler handler = new Handler();
+        final Handler handler = new Handler(Looper.getMainLooper());
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -232,7 +233,7 @@ public class Communicator implements DataClient.OnDataChangedListener {
         PutDataRequest mPutDataRequest = mPutDataMapRequest.asPutDataRequest();
         Wearable.getDataClient(context).putDataItem(mPutDataRequest);
         previewListener = listenerActivity;
-        final Handler handler = new Handler();
+        final Handler handler = new Handler(Looper.getMainLooper());
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -258,7 +259,7 @@ public class Communicator implements DataClient.OnDataChangedListener {
                     if (!isWatchConnected) {
                         Toast.makeText(applicationContext, "Watch connected", Toast.LENGTH_SHORT).show();
                         lastPing = mDataMapItem.getDataMap().getLong(TIMESTAMP);
-                        final Handler pingHandler = new Handler(){};
+                        final Handler pingHandler = new Handler(Looper.getMainLooper()){};
                         pingHandler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
