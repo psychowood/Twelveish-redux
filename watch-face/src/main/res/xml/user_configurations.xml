@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UserConfigurations>
+    <!-- Background Color -->
+    <ColorConfiguration
+        id="background_color"
+        displayName="Background Color"
+        defaultValue="0">
+        <ColorOption id="0" displayName="Black" colors="#000000" />
+        <ColorOption id="1" displayName="Red" colors="#FF0000" />
+        <ColorOption id="2" displayName="Blue" colors="#0000FF" />
+        <ColorOption id="3" displayName="White" colors="#FFFFFF" />
+    </ColorConfiguration>
+
+    <!-- Main Text Color -->
+    <ColorConfiguration
+        id="main_text_color"
+        displayName="Text Color"
+        defaultValue="0">
+        <ColorOption id="0" displayName="White" colors="#FFFFFF" />
+        <ColorOption id="1" displayName="Gray" colors="#888888" />
+        <ColorOption id="2" displayName="Black" colors="#000000" />
+        <ColorOption id="3" displayName="Red" colors="#FF0000" />
+    </ColorConfiguration>
+
+    <!-- Show Information toggles -->
+    <BooleanConfiguration
+        id="show_seconds"
+        displayName="Show Seconds"
+        defaultValue="TRUE" />
+
+    <BooleanConfiguration
+        id="show_battery"
+        displayName="Show Battery"
+        defaultValue="TRUE" />
+
+    <BooleanConfiguration
+        id="military_time"
+        displayName="24h Format"
+        defaultValue="FALSE" />
+
+</UserConfigurations>

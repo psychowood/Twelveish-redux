@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WatchFace width="450" height="450">
+    <UserConfigurations>
+        <!-- Background Color -->
+        <ColorConfiguration id="background_color" displayName="Background Color" defaultValue="0">
+            <ColorOption id="0" displayName="Black" colors="#000000" />
+            <ColorOption id="1" displayName="Red" colors="#FF0000" />
+            <ColorOption id="2" displayName="Blue" colors="#0000FF" />
+            <ColorOption id="3" displayName="White" colors="#FFFFFF" />
+        </ColorConfiguration>
+        <ColorConfiguration id="main_text_color" displayName="Text Color" defaultValue="0">
+            <ColorOption id="0" displayName="White" colors="#FFFFFF" />
+            <ColorOption id="1" displayName="Gray" colors="#888888" />
+            <ColorOption id="2" displayName="Black" colors="#000000" />
+            <ColorOption id="3" displayName="Red" colors="#FF0000" />
+        </ColorConfiguration>
+    </UserConfigurations>
+
+    <Scene>
+        <PartDraw name="Background" x="0" y="0" width="450" height="450">
+            <Rectangle x="0" y="0" width="450" height="450">
+                <Fill color="[CONFIGURATION.background_color]" />
+            </Rectangle>
+        </PartDraw>
+
+        <Group name="TopInfo" x="0" y="40" width="450" height="80">
+            <PartText name="DigitalTime" x="0" y="0" width="450" height="30">
+                <Text align="CENTER">
+                    <Font family="SYNC_TO_DEVICE" size="22" color="#FFFFFF">
+                        <Template>%d:%d%d
+                            <Parameter expression="[HOUR_1_12]" />
+                            <Parameter expression="[MINUTE] / 10" />
+                            <Parameter expression="[MINUTE] % 10" />
+                        </Template>
+                    </Font>
+                </Text>
+            </PartText>
+            <PartText name="SubInfo" x="0" y="35" width="450" height="25">
+                <Text align="CENTER">
+                    <Font family="SYNC_TO_DEVICE" size="16" color="#AAAAAA">
+                        <Template>%s • %d%%
+                            <Parameter expression="[DAY_OF_WEEK_S] + ' ' + [DAY]" />
+                            <Parameter expression="[BATTERY_PERCENT]" />
+                        </Template>
+                    </Font>
+                </Text>
+            </PartText>
+        </Group>
+
+        <PartText name="FuzzyTime" x="25" y="140" width="400" height="200">
+            <Text align="CENTER">
+                <Font family="SYNC_TO_DEVICE" size="36" color="[CONFIGURATION.main_text_color]">
+                    <Template>%s%s%s
+                        <Parameter expression="[MINUTE] >= 10 &amp;&amp; [MINUTE] &lt; 20 ? 'a quarter past ' : ([MINUTE] >= 20 &amp;&amp; [MINUTE] &lt; 25 ? 'almost half past ' : ([MINUTE] >= 25 &amp;&amp; [MINUTE] &lt; 30 ? 'around half past ' : ([MINUTE] >= 30 &amp;&amp; [MINUTE] &lt; 40 ? 'half past ' : ([MINUTE] >= 40 &amp;&amp; [MINUTE] &lt; 50 ? 'a quarter to ' : ([MINUTE] >= 50 &amp;&amp; [MINUTE] &lt; 55 ? 'approaching ' : ([MINUTE] >= 55 &amp;&amp; [MINUTE] &lt; 60 ? 'almost ' : ''))))))" />
+                        <Parameter expression="([MINUTE] >= 38 ? ([HOUR_1_12] % 12 + 1) : [HOUR_1_12]) == 1 ? 'one' : (([MINUTE] >= 38 ? ([HOUR_1_12] % 12 + 1) : [HOUR_1_12]) == 2 ? 'two' : (([MINUTE] >= 38 ? ([HOUR_1_12] % 12 + 1) : [HOUR_1_12]) == 3 ? 'three' : (([MINUTE] >= 38 ? ([HOUR_1_12] % 12 + 1) : [HOUR_1_12]) == 4 ? 'four' : (([MINUTE] >= 38 ? ([HOUR_1_12] % 12 + 1) : [HOUR_1_12]) == 5 ? 'five' : (([MINUTE] >= 38 ? ([HOUR_1_12] % 12 + 1) : [HOUR_1_12]) == 6 ? 'six' : (([MINUTE] >= 38 ? ([HOUR_1_12] % 12 + 1) : [HOUR_1_12]) == 7 ? 'seven' : (([MINUTE] >= 38 ? ([HOUR_1_12] % 12 + 1) : [HOUR_1_12]) == 8 ? 'eight' : (([MINUTE] >= 38 ? ([HOUR_1_12] % 12 + 1) : [HOUR_1_12]) == 9 ? 'nine' : (([MINUTE] >= 38 ? ([HOUR_1_12] % 12 + 1) : [HOUR_1_12]) == 10 ? 'ten' : (([MINUTE] >= 38 ? ([HOUR_1_12] % 12 + 1) : [HOUR_1_12]) == 11 ? 'eleven' : 'twelve'))))))))))" />
+                        <Parameter expression="[MINUTE] &lt; 5 ? ' ish' : ([MINUTE] >= 5 &amp;&amp; [MINUTE] &lt; 10 ? ' or so' : ([MINUTE] >= 15 &amp;&amp; [MINUTE] &lt; 20 ? ' or so' : ([MINUTE] >= 30 &amp;&amp; [MINUTE] &lt; 35 ? ' ish' : ([MINUTE] >= 35 &amp;&amp; [MINUTE] &lt; 40 ? ' or so' : ([MINUTE] >= 45 &amp;&amp; [MINUTE] &lt; 50 ? ' or so' : '')))))" />
+                    </Template>
+                </Font>
+            </Text>
+        </PartText>
+
+        <ComplicationSlot slotId="1" supportedTypes="SHORT_TEXT" x="50" y="320" width="80" height="80">
+            <BoundingOval x="0" y="0" width="80" height="80" />
+            <DefaultProviderPolicy defaultSystemProvider="WATCH_BATTERY" defaultSystemProviderType="SHORT_TEXT" />
+            <Complication type="SHORT_TEXT">
+                 <PartText x="0" y="0" width="80" height="80">
+                    <Text align="CENTER"><Font family="SYNC_TO_DEVICE" size="24" color="#FFFFFF"><Template>%s<Parameter expression="[COMPLICATION.TEXT]" /></Template></Font></Text>
+                </PartText>
+            </Complication>
+        </ComplicationSlot>
+        <ComplicationSlot slotId="2" supportedTypes="SHORT_TEXT" x="320" y="320" width="80" height="80">
+            <BoundingOval x="0" y="0" width="80" height="80" />
+            <DefaultProviderPolicy defaultSystemProvider="DATE" defaultSystemProviderType="SHORT_TEXT" />
+            <Complication type="SHORT_TEXT">
+                 <PartText x="0" y="0" width="80" height="80">
+                    <Text align="CENTER"><Font family="SYNC_TO_DEVICE" size="24" color="#FFFFFF"><Template>%s<Parameter expression="[COMPLICATION.TEXT]" /></Template></Font></Text>
+                </PartText>
+            </Complication>
+        </ComplicationSlot>
+    </Scene>
+</WatchFace>
