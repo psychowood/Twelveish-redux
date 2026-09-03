@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hour_1">час</string>
+    <string name="hour_2">два</string>
+    <string name="hour_3">три</string>
+    <string name="hour_4">четыре</string>
+    <string name="hour_5">пять</string>
+    <string name="hour_6">шесть</string>
+    <string name="hour_7">семь</string>
+    <string name="hour_8">восемь</string>
+    <string name="hour_9">девять</string>
+    <string name="hour_10">десять</string>
+    <string name="hour_11">одиннадцать</string>
+    <string name="hour_12">двенадцать</string>
+
+    <string name="seg_0_prefix"></string>
+    <string name="seg_0_suffix"></string>
+    <string name="seg_1_prefix"></string>
+    <string name="seg_1_suffix">или\u00A0около того</string>
+    <string name="seg_2_prefix">почти</string>
+    <string name="seg_2_suffix">с\u00A0четвертью</string>
+    <string name="seg_3_prefix"></string>
+    <string name="seg_3_suffix">с\u00A0четвертью</string>
+    <string name="seg_4_prefix">почти</string>
+    <string name="seg_4_suffix">с\u00A0половиной</string>
+    <string name="seg_5_prefix"></string>
+    <string name="seg_5_suffix">с\u00A0половиной</string>
+    <string name="seg_6_prefix"></string>
+    <string name="seg_6_suffix">с\u00A0половиной</string>
+    <string name="seg_7_prefix"></string>
+    <string name="seg_7_suffix">с\u00A0половиной</string>
+    <string name="seg_8_prefix">почти\u00A0без четверти</string>
+    <string name="seg_8_suffix"></string>
+    <string name="seg_9_prefix">без четверти</string>
+    <string name="seg_9_suffix"></string>
+    <string name="seg_10_prefix">почти</string>
+    <string name="seg_10_suffix"></string>
+    <string name="seg_11_prefix"></string>
+    <string name="seg_11_suffix"></string>
+</resources>

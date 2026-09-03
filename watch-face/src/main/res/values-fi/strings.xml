@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hour_1">yksi</string>
+    <string name="hour_2">kaksi</string>
+    <string name="hour_3">kolme</string>
+    <string name="hour_4">neljä</string>
+    <string name="hour_5">viisi</string>
+    <string name="hour_6">kuusi</string>
+    <string name="hour_7">seitsemän</string>
+    <string name="hour_8">kahdeksan</string>
+    <string name="hour_9">yhdeksän</string>
+    <string name="hour_10">kymmenen</string>
+    <string name="hour_11">yksitoista</string>
+    <string name="hour_12">kaksitoista</string>
+
+    <string name="seg_0_prefix"></string>
+    <string name="seg_0_suffix"></string>
+    <string name="seg_1_prefix">viittä yli</string>
+    <string name="seg_1_suffix"></string>
+    <string name="seg_2_prefix">kymmentä yli</string>
+    <string name="seg_2_suffix"></string>
+    <string name="seg_3_prefix">varttia yli</string>
+    <string name="seg_3_suffix"></string>
+    <string name="seg_4_prefix">kahtakymmentä yli</string>
+    <string name="seg_4_suffix"></string>
+    <string name="seg_5_prefix">kohta puoli</string>
+    <string name="seg_5_suffix"></string>
+    <string name="seg_6_prefix">puoli</string>
+    <string name="seg_6_suffix"></string>
+    <string name="seg_7_prefix">puoli</string>
+    <string name="seg_7_suffix"></string>
+    <string name="seg_8_prefix">kohta varttia vaille</string>
+    <string name="seg_8_suffix"></string>
+    <string name="seg_9_prefix">varttia vaille</string>
+    <string name="seg_9_suffix"></string>
+    <string name="seg_10_prefix">kymmentä vaille</string>
+    <string name="seg_10_suffix"></string>
+    <string name="seg_11_prefix">lähes</string>
+    <string name="seg_11_suffix"></string>
+</resources>

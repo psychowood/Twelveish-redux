@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hour_1">μία</string>
+    <string name="hour_2">δύο</string>
+    <string name="hour_3">τρεις</string>
+    <string name="hour_4">τέσσερις</string>
+    <string name="hour_5">πέντε</string>
+    <string name="hour_6">έξι</string>
+    <string name="hour_7">επτά</string>
+    <string name="hour_8">οκτώ</string>
+    <string name="hour_9">εννιά</string>
+    <string name="hour_10">δέκα</string>
+    <string name="hour_11">έντεκα</string>
+    <string name="hour_12">δώδεκα</string>
+
+    <string name="seg_0_prefix">μόλις πέρασε</string>
+    <string name="seg_0_suffix"></string>
+    <string name="seg_1_prefix"></string>
+    <string name="seg_1_suffix">και κάτι</string>
+    <string name="seg_2_prefix">περίπου</string>
+    <string name="seg_2_suffix">και τέταρτο</string>
+    <string name="seg_3_prefix">πέρασε</string>
+    <string name="seg_3_suffix">και τέταρτο</string>
+    <string name="seg_4_prefix">πλησιάζει</string>
+    <string name="seg_4_suffix">και μισή</string>
+    <string name="seg_5_prefix">περίπου</string>
+    <string name="seg_5_suffix">και μισή</string>
+    <string name="seg_6_prefix">πέρασε</string>
+    <string name="seg_6_suffix">και μισή</string>
+    <string name="seg_7_prefix">πλησιάζει</string>
+    <string name="seg_7_suffix">παρά τέταρτο</string>
+    <string name="seg_8_prefix">περίπου</string>
+    <string name="seg_8_suffix">παρά τέταρτο</string>
+    <string name="seg_9_prefix">πέρασε</string>
+    <string name="seg_9_suffix">παρά τέταρτο</string>
+    <string name="seg_10_prefix">πάει για</string>
+    <string name="seg_10_suffix"></string>
+    <string name="seg_11_prefix">σχεδόν</string>
+    <string name="seg_11_suffix"></string>
+</resources>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Hour Names (Lithuanian) -->
+    <string name="hour_1">pirma</string>
+    <string name="hour_2">antra</string>
+    <string name="hour_3">trečia</string>
+    <string name="hour_4">ketvirta</string>
+    <string name="hour_5">penkta</string>
+    <string name="hour_6">šešta</string>
+    <string name="hour_7">septinta</string>
+    <string name="hour_8">aštunta</string>
+    <string name="hour_9">devinta</string>
+    <string name="hour_10">dešimta</string>
+    <string name="hour_11">vienuolikta</string>
+    <string name="hour_12">dvylikta</string>
+
+    <!-- Fuzzy Segments (Lithuanian) -->
+    <string name="seg_0_prefix">apie</string>
+    <string name="seg_0_suffix"></string>
+    <string name="seg_1_prefix">maždaug</string>
+    <string name="seg_1_suffix"></string>
+    <string name="seg_2_prefix">beveik</string>
+    <string name="seg_2_suffix">su ketvirčiu</string>
+    <string name="seg_3_prefix">maždaug</string>
+    <string name="seg_3_suffix">su ketvirčiu</string>
+    <string name="seg_4_prefix">beveik</string>
+    <string name="seg_4_suffix">su puse</string>
+    <string name="seg_5_prefix">apie</string>
+    <string name="seg_5_suffix">su puse</string>
+    <string name="seg_6_prefix">apie</string>
+    <string name="seg_6_suffix">su puse</string>
+    <string name="seg_7_prefix">maždaug</string>
+    <string name="seg_7_suffix">su puse</string>
+    <string name="seg_8_prefix">beveik be ketvirčio</string>
+    <string name="seg_8_suffix"></string>
+    <string name="seg_9_prefix">be ketvirčio</string>
+    <string name="seg_9_suffix"></string>
+    <string name="seg_10_prefix">beveik</string>
+    <string name="seg_10_suffix"></string>
+    <string name="seg_11_prefix">apie</string>
+    <string name="seg_11_suffix"></string>
+</resources>

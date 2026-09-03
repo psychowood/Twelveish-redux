@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Hour Names (German) -->
+    <string name="hour_1">eins</string>
+    <string name="hour_2">zwei</string>
+    <string name="hour_3">drei</string>
+    <string name="hour_4">vier</string>
+    <string name="hour_5">fünf</string>
+    <string name="hour_6">sechs</string>
+    <string name="hour_7">sieben</string>
+    <string name="hour_8">acht</string>
+    <string name="hour_9">neun</string>
+    <string name="hour_10">zehn</string>
+    <string name="hour_11">elf</string>
+    <string name="hour_12">zwölf</string>
+
+    <!-- Fuzzy Segments (German) -->
+    <string name="seg_0_prefix">kurz nach</string>
+    <string name="seg_0_suffix"></string>
+    <string name="seg_1_prefix">bald Viertel nach</string>
+    <string name="seg_1_suffix"></string>
+    <string name="seg_2_prefix">fast Viertel nach</string>
+    <string name="seg_2_suffix"></string>
+    <string name="seg_3_prefix">Viertel nach</string>
+    <string name="seg_3_suffix"></string>
+    <string name="seg_4_prefix">bald halb</string>
+    <string name="seg_4_suffix"></string>
+    <string name="seg_5_prefix">kurz vor halb</string>
+    <string name="seg_5_suffix"></string>
+    <string name="seg_6_prefix">kurz nach halb</string>
+    <string name="seg_6_suffix"></string>
+    <string name="seg_7_prefix">bald Viertel vor</string>
+    <string name="seg_7_suffix"></string>
+    <string name="seg_8_prefix">fast Viertel vor</string>
+    <string name="seg_8_suffix"></string>
+    <string name="seg_9_prefix">Viertel vor</string>
+    <string name="seg_9_suffix"></string>
+    <string name="seg_10_prefix">bald</string>
+    <string name="seg_10_suffix"></string>
+    <string name="seg_11_prefix">fast</string>
+    <string name="seg_11_suffix"></string>
+</resources>

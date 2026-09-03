@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hour_1">ett</string>
+    <string name="hour_2">två</string>
+    <string name="hour_3">tre</string>
+    <string name="hour_4">fyra</string>
+    <string name="hour_5">fem</string>
+    <string name="hour_6">sex</string>
+    <string name="hour_7">sju</string>
+    <string name="hour_8">åtta</string>
+    <string name="hour_9">nio</string>
+    <string name="hour_10">tio</string>
+    <string name="hour_11">elva</string>
+    <string name="hour_12">tolv</string>
+
+    <string name="seg_0_prefix"></string>
+    <string name="seg_0_suffix">ish</string>
+    <string name="seg_1_prefix">strax efter</string>
+    <string name="seg_1_suffix"></string>
+    <string name="seg_2_prefix">snart kvart över</string>
+    <string name="seg_2_suffix"></string>
+    <string name="seg_3_prefix">kvart över</string>
+    <string name="seg_3_suffix"></string>
+    <string name="seg_4_prefix">snart halv</string>
+    <string name="seg_4_suffix"></string>
+    <string name="seg_5_prefix">nästan halv</string>
+    <string name="seg_5_suffix"></string>
+    <string name="seg_6_prefix">halv</string>
+    <string name="seg_6_suffix"></string>
+    <string name="seg_7_prefix">lite över halv</string>
+    <string name="seg_7_suffix">ish</string>
+    <string name="seg_8_prefix">snart kvart i</string>
+    <string name="seg_8_suffix"></string>
+    <string name="seg_9_prefix">kvart i</string>
+    <string name="seg_9_suffix"></string>
+    <string name="seg_10_prefix">snart</string>
+    <string name="seg_10_suffix"></string>
+    <string name="seg_11_prefix">nästan</string>
+    <string name="seg_11_suffix"></string>
+</resources>

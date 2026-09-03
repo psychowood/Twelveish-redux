@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hour_1">uma</string>
+    <string name="hour_2">duas</string>
+    <string name="hour_3">três</string>
+    <string name="hour_4">quatro</string>
+    <string name="hour_5">cinco</string>
+    <string name="hour_6">seis</string>
+    <string name="hour_7">sete</string>
+    <string name="hour_8">oito</string>
+    <string name="hour_9">nove</string>
+    <string name="hour_10">dez</string>
+    <string name="hour_11">onze</string>
+    <string name="hour_12">doze</string>
+
+    <string name="seg_0_prefix"></string>
+    <string name="seg_0_suffix">e pouco</string>
+    <string name="seg_1_prefix"></string>
+    <string name="seg_1_suffix">e tal</string>
+    <string name="seg_2_prefix">quase</string>
+    <string name="seg_2_suffix">e um quarto</string>
+    <string name="seg_3_prefix"></string>
+    <string name="seg_3_suffix">e um quarto</string>
+    <string name="seg_4_prefix">após</string>
+    <string name="seg_4_suffix">e um quarto</string>
+    <string name="seg_5_prefix">quase</string>
+    <string name="seg_5_suffix">e meia</string>
+    <string name="seg_6_prefix"></string>
+    <string name="seg_6_suffix">e meia</string>
+    <string name="seg_7_prefix">após</string>
+    <string name="seg_7_suffix">e meia</string>
+    <string name="seg_8_prefix">quase</string>
+    <string name="seg_8_suffix">menos um quarto</string>
+    <string name="seg_9_prefix"></string>
+    <string name="seg_9_suffix">menos um quarto</string>
+    <string name="seg_10_prefix"></string>
+    <string name="seg_10_suffix">menos pouco</string>
+    <string name="seg_11_prefix">quase</string>
+    <string name="seg_11_suffix"></string>
+</resources>

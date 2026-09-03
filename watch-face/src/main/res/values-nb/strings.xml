@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hour_1">ett</string>
+    <string name="hour_2">to</string>
+    <string name="hour_3">tre</string>
+    <string name="hour_4">fire</string>
+    <string name="hour_5">fem</string>
+    <string name="hour_6">seks</string>
+    <string name="hour_7">sju</string>
+    <string name="hour_8">åtte</string>
+    <string name="hour_9">ni</string>
+    <string name="hour_10">ti</string>
+    <string name="hour_11">elleve</string>
+    <string name="hour_12">tolv</string>
+
+    <string name="seg_0_prefix"></string>
+    <string name="seg_0_suffix">ish</string>
+    <string name="seg_1_prefix">litt over</string>
+    <string name="seg_1_suffix"></string>
+    <string name="seg_2_prefix">snart kvart over</string>
+    <string name="seg_2_suffix"></string>
+    <string name="seg_3_prefix">kvart over</string>
+    <string name="seg_3_suffix"></string>
+    <string name="seg_4_prefix">rundt halv</string>
+    <string name="seg_4_suffix"></string>
+    <string name="seg_5_prefix">nesten halv</string>
+    <string name="seg_5_suffix"></string>
+    <string name="seg_6_prefix">halv</string>
+    <string name="seg_6_suffix"></string>
+    <string name="seg_7_prefix">halv</string>
+    <string name="seg_7_suffix"></string>
+    <string name="seg_8_prefix">snart kvart på</string>
+    <string name="seg_8_suffix"></string>
+    <string name="seg_9_prefix">kvart på</string>
+    <string name="seg_9_suffix"></string>
+    <string name="seg_10_prefix">rundt</string>
+    <string name="seg_10_suffix"></string>
+    <string name="seg_11_prefix">nesten</string>
+    <string name="seg_11_suffix"></string>
+</resources>

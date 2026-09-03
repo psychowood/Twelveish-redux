@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hour_1">een</string>
+    <string name="hour_2">twee</string>
+    <string name="hour_3">drie</string>
+    <string name="hour_4">vier</string>
+    <string name="hour_5">vijf</string>
+    <string name="hour_6">zes</string>
+    <string name="hour_7">zeven</string>
+    <string name="hour_8">acht</string>
+    <string name="hour_9">negen</string>
+    <string name="hour_10">tien</string>
+    <string name="hour_11">elf</string>
+    <string name="hour_12">twaalf</string>
+
+    <string name="seg_0_prefix">iets over</string>
+    <string name="seg_0_suffix"></string>
+    <string name="seg_1_prefix">bijna tien over</string>
+    <string name="seg_1_suffix"></string>
+    <string name="seg_2_prefix">bijna kwart over</string>
+    <string name="seg_2_suffix"></string>
+    <string name="seg_3_prefix">bijna tien voor half</string>
+    <string name="seg_3_suffix"></string>
+    <string name="seg_4_prefix">bijna vijf voor half</string>
+    <string name="seg_4_suffix"></string>
+    <string name="seg_5_prefix">bijna half</string>
+    <string name="seg_5_suffix"></string>
+    <string name="seg_6_prefix">iets over half</string>
+    <string name="seg_6_suffix"></string>
+    <string name="seg_7_prefix">bijna tien over half</string>
+    <string name="seg_7_suffix"></string>
+    <string name="seg_8_prefix">bijna kwart voor</string>
+    <string name="seg_8_suffix"></string>
+    <string name="seg_9_prefix">bijna tien voor</string>
+    <string name="seg_9_suffix"></string>
+    <string name="seg_10_prefix">bijna vijf voor</string>
+    <string name="seg_10_suffix"></string>
+    <string name="seg_11_prefix">iets voor</string>
+    <string name="seg_11_suffix"> uur</string>
+</resources>

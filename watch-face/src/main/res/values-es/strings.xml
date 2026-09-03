@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hour_1">la una</string>
+    <string name="hour_2">las dos</string>
+    <string name="hour_3">las tres</string>
+    <string name="hour_4">las cuatro</string>
+    <string name="hour_5">las cinco</string>
+    <string name="hour_6">las seis</string>
+    <string name="hour_7">las siete</string>
+    <string name="hour_8">las ocho</string>
+    <string name="hour_9">las nueve</string>
+    <string name="hour_10">las diez</string>
+    <string name="hour_11">las once</string>
+    <string name="hour_12">las doce</string>
+
+    <string name="seg_0_prefix"></string>
+    <string name="seg_0_suffix"></string>
+    <string name="seg_1_prefix"></string>
+    <string name="seg_1_suffix">y cinco</string>
+    <string name="seg_2_prefix">casi</string>
+    <string name="seg_2_suffix">y cuarto</string>
+    <string name="seg_3_prefix"></string>
+    <string name="seg_3_suffix">y cuarto</string>
+    <string name="seg_4_prefix"></string>
+    <string name="seg_4_suffix">y veinte</string>
+    <string name="seg_5_prefix">casi</string>
+    <string name="seg_5_suffix">y media</string>
+    <string name="seg_6_prefix"></string>
+    <string name="seg_6_suffix">y media</string>
+    <string name="seg_7_prefix"></string>
+    <string name="seg_7_suffix">y media pasadas</string>
+    <string name="seg_8_prefix"></string>
+    <string name="seg_8_suffix">menos veinte</string>
+    <string name="seg_9_prefix"></string>
+    <string name="seg_9_suffix">menos cuarto</string>
+    <string name="seg_10_prefix"></string>
+    <string name="seg_10_suffix">menos diez</string>
+    <string name="seg_11_prefix">casi</string>
+    <string name="seg_11_suffix"></string>
+</resources>
