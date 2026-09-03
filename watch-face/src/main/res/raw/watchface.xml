@@ -51,18 +51,48 @@
             </PartText>
         </Group>
 
-        <!-- Main Fuzzy Time -->
-        <PartText name="FuzzyTime" x="25" y="140" width="400" height="200">
-            <Text align="CENTER">
-                <Font family="SYNC_TO_DEVICE" size="36" color="[CONFIGURATION.main_text_color]">
-                    <Template><![CDATA[%s%s%s]]>
-                        <Parameter expression="[MINUTE] >= 10 && [MINUTE] < 15 ? 'a quarter past ' : ([MINUTE] >= 15 && [MINUTE] < 20 ? 'a quarter past ' : ([MINUTE] >= 20 && [MINUTE] < 25 ? 'almost half past ' : ([MINUTE] >= 25 && [MINUTE] < 30 ? 'around half past ' : ([MINUTE] >= 30 && [MINUTE] < 35 ? 'half past ' : ([MINUTE] >= 35 && [MINUTE] < 40 ? 'half past ' : ([MINUTE] >= 40 && [MINUTE] < 45 ? 'a quarter to ' : ([MINUTE] >= 45 && [MINUTE] < 50 ? 'a quarter to ' : ([MINUTE] >= 50 && [MINUTE] < 55 ? 'approaching ' : ([MINUTE] >= 55 && [MINUTE] < 60 ? 'almost ' : '')))))))))" />
-                        <Parameter expression="([MINUTE] >= 38 ? ([HOUR_1_12] % 12 + 1) : [HOUR_1_12]) == 1 ? 'one' : (([MINUTE] >= 38 ? ([HOUR_1_12] % 12 + 1) : [HOUR_1_12]) == 2 ? 'two' : (([MINUTE] >= 38 ? ([HOUR_1_12] % 12 + 1) : [HOUR_1_12]) == 3 ? 'three' : (([MINUTE] >= 38 ? ([HOUR_1_12] % 12 + 1) : [HOUR_1_12]) == 4 ? 'four' : (([MINUTE] >= 38 ? ([HOUR_1_12] % 12 + 1) : [HOUR_1_12]) == 5 ? 'five' : (([MINUTE] >= 38 ? ([HOUR_1_12] % 12 + 1) : [HOUR_1_12]) == 6 ? 'six' : (([MINUTE] >= 38 ? ([HOUR_1_12] % 12 + 1) : [HOUR_1_12]) == 7 ? 'seven' : (([MINUTE] >= 38 ? ([HOUR_1_12] % 12 + 1) : [HOUR_1_12]) == 8 ? 'eight' : (([MINUTE] >= 38 ? ([HOUR_1_12] % 12 + 1) : [HOUR_1_12]) == 9 ? 'nine' : (([MINUTE] >= 38 ? ([HOUR_1_12] % 12 + 1) : [HOUR_1_12]) == 10 ? 'ten' : (([MINUTE] >= 38 ? ([HOUR_1_12] % 12 + 1) : [HOUR_1_12]) == 11 ? 'eleven' : 'twelve'))))))))))" />
-                        <Parameter expression="[MINUTE] < 5 ? ' ish' : ([MINUTE] >= 5 && [MINUTE] < 10 ? ' or so' : ([MINUTE] >= 15 && [MINUTE] < 20 ? ' or so' : ([MINUTE] >= 30 && [MINUTE] < 35 ? ' ish' : ([MINUTE] >= 35 && [MINUTE] < 40 ? ' or so' : ([MINUTE] >= 45 && [MINUTE] < 50 ? ' or so' : '')))))" />
-                    </Template>
-                </Font>
-            </Text>
-        </PartText>
+        <!-- Main Fuzzy Time Group -->
+        <Group name="FuzzyTimeGroup" x="0" y="130" width="450" height="200">
+            <Group name="Prefix" x="0" y="0" width="450" height="60">
+                <Condition>
+                    <Compare expression="[MINUTE] >= 10 &amp;&amp; [MINUTE] &lt; 20"><PartText x="0" y="0" width="450" height="60"><Text align="CENTER"><Font family="SYNC_TO_DEVICE" size="30" color="[CONFIGURATION.main_text_color]"><Template>a quarter past</Template></Font></Text></PartText></Compare>
+                    <Compare expression="[MINUTE] >= 20 &amp;&amp; [MINUTE] &lt; 25"><PartText x="0" y="0" width="450" height="60"><Text align="CENTER"><Font family="SYNC_TO_DEVICE" size="30" color="[CONFIGURATION.main_text_color]"><Template>almost half past</Template></Font></Text></PartText></Compare>
+                    <Compare expression="[MINUTE] >= 25 &amp;&amp; [MINUTE] &lt; 30"><PartText x="0" y="0" width="450" height="60"><Text align="CENTER"><Font family="SYNC_TO_DEVICE" size="30" color="[CONFIGURATION.main_text_color]"><Template>around half past</Template></Font></Text></PartText></Compare>
+                    <Compare expression="[MINUTE] >= 30 &amp;&amp; [MINUTE] &lt; 40"><PartText x="0" y="0" width="450" height="60"><Text align="CENTER"><Font family="SYNC_TO_DEVICE" size="30" color="[CONFIGURATION.main_text_color]"><Template>half past</Template></Font></Text></PartText></Compare>
+                    <Compare expression="[MINUTE] >= 40 &amp;&amp; [MINUTE] &lt; 50"><PartText x="0" y="0" width="450" height="60"><Text align="CENTER"><Font family="SYNC_TO_DEVICE" size="30" color="[CONFIGURATION.main_text_color]"><Template>a quarter to</Template></Font></Text></PartText></Compare>
+                    <Compare expression="[MINUTE] >= 50 &amp;&amp; [MINUTE] &lt; 55"><PartText x="0" y="0" width="450" height="60"><Text align="CENTER"><Font family="SYNC_TO_DEVICE" size="30" color="[CONFIGURATION.main_text_color]"><Template>approaching</Template></Font></Text></PartText></Compare>
+                    <Compare expression="[MINUTE] >= 55 &amp;&amp; [MINUTE] &lt; 60"><PartText x="0" y="0" width="450" height="60"><Text align="CENTER"><Font family="SYNC_TO_DEVICE" size="30" color="[CONFIGURATION.main_text_color]"><Template>almost</Template></Font></Text></PartText></Compare>
+                </Condition>
+            </Group>
+
+            <Group name="Hour" x="0" y="65" width="450" height="70">
+                <Condition>
+                    <Compare expression="([MINUTE] >= 40 ? ([HOUR_1_12] % 12 + 1) : [HOUR_1_12]) == 1"><PartText x="0" y="0" width="450" height="70"><Text align="CENTER"><Font family="SYNC_TO_DEVICE" size="54" color="[CONFIGURATION.main_text_color]"><Template>one</Template></Font></Text></PartText></Compare>
+                    <Compare expression="([MINUTE] >= 40 ? ([HOUR_1_12] % 12 + 1) : [HOUR_1_12]) == 2"><PartText x="0" y="0" width="450" height="70"><Text align="CENTER"><Font family="SYNC_TO_DEVICE" size="54" color="[CONFIGURATION.main_text_color]"><Template>two</Template></Font></Text></PartText></Compare>
+                    <Compare expression="([MINUTE] >= 40 ? ([HOUR_1_12] % 12 + 1) : [HOUR_1_12]) == 3"><PartText x="0" y="0" width="450" height="70"><Text align="CENTER"><Font family="SYNC_TO_DEVICE" size="54" color="[CONFIGURATION.main_text_color]"><Template>three</Template></Font></Text></PartText></Compare>
+                    <Compare expression="([MINUTE] >= 40 ? ([HOUR_1_12] % 12 + 1) : [HOUR_1_12]) == 4"><PartText x="0" y="0" width="450" height="70"><Text align="CENTER"><Font family="SYNC_TO_DEVICE" size="54" color="[CONFIGURATION.main_text_color]"><Template>four</Template></Font></Text></PartText></Compare>
+                    <Compare expression="([MINUTE] >= 40 ? ([HOUR_1_12] % 12 + 1) : [HOUR_1_12]) == 5"><PartText x="0" y="0" width="450" height="70"><Text align="CENTER"><Font family="SYNC_TO_DEVICE" size="54" color="[CONFIGURATION.main_text_color]"><Template>five</Template></Font></Text></PartText></Compare>
+                    <Compare expression="([MINUTE] >= 40 ? ([HOUR_1_12] % 12 + 1) : [HOUR_1_12]) == 6"><PartText x="0" y="0" width="450" height="70"><Text align="CENTER"><Font family="SYNC_TO_DEVICE" size="54" color="[CONFIGURATION.main_text_color]"><Template>six</Template></Font></Text></PartText></Compare>
+                    <Compare expression="([MINUTE] >= 40 ? ([HOUR_1_12] % 12 + 1) : [HOUR_1_12]) == 7"><PartText x="0" y="0" width="450" height="70"><Text align="CENTER"><Font family="SYNC_TO_DEVICE" size="54" color="[CONFIGURATION.main_text_color]"><Template>seven</Template></Font></Text></PartText></Compare>
+                    <Compare expression="([MINUTE] >= 40 ? ([HOUR_1_12] % 12 + 1) : [HOUR_1_12]) == 8"><PartText x="0" y="0" width="450" height="70"><Text align="CENTER"><Font family="SYNC_TO_DEVICE" size="54" color="[CONFIGURATION.main_text_color]"><Template>eight</Template></Font></Text></PartText></Compare>
+                    <Compare expression="([MINUTE] >= 40 ? ([HOUR_1_12] % 12 + 1) : [HOUR_1_12]) == 9"><PartText x="0" y="0" width="450" height="70"><Text align="CENTER"><Font family="SYNC_TO_DEVICE" size="54" color="[CONFIGURATION.main_text_color]"><Template>nine</Template></Font></Text></PartText></Compare>
+                    <Compare expression="([MINUTE] >= 40 ? ([HOUR_1_12] % 12 + 1) : [HOUR_1_12]) == 10"><PartText x="0" y="0" width="450" height="70"><Text align="CENTER"><Font family="SYNC_TO_DEVICE" size="54" color="[CONFIGURATION.main_text_color]"><Template>ten</Template></Font></Text></PartText></Compare>
+                    <Compare expression="([MINUTE] >= 40 ? ([HOUR_1_12] % 12 + 1) : [HOUR_1_12]) == 11"><PartText x="0" y="0" width="450" height="70"><Text align="CENTER"><Font family="SYNC_TO_DEVICE" size="54" color="[CONFIGURATION.main_text_color]"><Template>eleven</Template></Font></Text></PartText></Compare>
+                    <Default><PartText x="0" y="0" width="450" height="70"><Text align="CENTER"><Font family="SYNC_TO_DEVICE" size="54" color="[CONFIGURATION.main_text_color]"><Template>twelve</Template></Font></Text></PartText></Default>
+                </Condition>
+            </Group>
+
+            <Group name="Suffix" x="0" y="135" width="450" height="60">
+                <Condition>
+                    <Compare expression="[MINUTE] &lt; 5"><PartText x="0" y="0" width="450" height="60"><Text align="CENTER"><Font family="SYNC_TO_DEVICE" size="30" color="[CONFIGURATION.main_text_color]"><Template>ish</Template></Font></Text></PartText></Compare>
+                    <Compare expression="[MINUTE] >= 5 &amp;&amp; [MINUTE] &lt; 10"><PartText x="0" y="0" width="450" height="60"><Text align="CENTER"><Font family="SYNC_TO_DEVICE" size="30" color="[CONFIGURATION.main_text_color]"><Template>or so</Template></Font></Text></PartText></Compare>
+                    <Compare expression="[MINUTE] >= 15 &amp;&amp; [MINUTE] &lt; 20"><PartText x="0" y="0" width="450" height="60"><Text align="CENTER"><Font family="SYNC_TO_DEVICE" size="30" color="[CONFIGURATION.main_text_color]"><Template>or so</Template></Font></Text></PartText></Compare>
+                    <Compare expression="[MINUTE] >= 30 &amp;&amp; [MINUTE] &lt; 35"><PartText x="0" y="0" width="450" height="60"><Text align="CENTER"><Font family="SYNC_TO_DEVICE" size="30" color="[CONFIGURATION.main_text_color]"><Template>ish</Template></Font></Text></PartText></Compare>
+                    <Compare expression="[MINUTE] >= 35 &amp;&amp; [MINUTE] &lt; 40"><PartText x="0" y="0" width="450" height="60"><Text align="CENTER"><Font family="SYNC_TO_DEVICE" size="30" color="[CONFIGURATION.main_text_color]"><Template>or so</Template></Font></Text></PartText></Compare>
+                    <Compare expression="[MINUTE] >= 45 &amp;&amp; [MINUTE] &lt; 50"><PartText x="0" y="0" width="450" height="60"><Text align="CENTER"><Font family="SYNC_TO_DEVICE" size="30" color="[CONFIGURATION.main_text_color]"><Template>or so</Template></Font></Text></PartText></Compare>
+                </Condition>
+            </Group>
+        </Group>
 
         <!-- Complications -->
         <ComplicationSlot slotId="1" supportedTypes="SHORT_TEXT" x="50" y="320" width="80" height="80">
