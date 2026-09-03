@@ -6,9 +6,9 @@
         displayName="Background Color"
         defaultValue="0">
         <ColorOption id="0" displayName="Black" colors="#000000" />
-        <ColorOption id="1" displayName="Red" colors="#FF0000" />
-        <ColorOption id="2" displayName="Blue" colors="#0000FF" />
-        <ColorOption id="3" displayName="White" colors="#FFFFFF" />
+        <ColorOption id="1" displayName="Dark Gray" colors="#222222" />
+        <ColorOption id="2" displayName="Deep Blue" colors="#000033" />
+        <ColorOption id="3" displayName="Forest Green" colors="#002200" />
     </ColorConfiguration>
 
     <!-- Main Text Color -->
@@ -17,25 +17,20 @@
         displayName="Text Color"
         defaultValue="0">
         <ColorOption id="0" displayName="White" colors="#FFFFFF" />
-        <ColorOption id="1" displayName="Gray" colors="#888888" />
-        <ColorOption id="2" displayName="Black" colors="#000000" />
-        <ColorOption id="3" displayName="Red" colors="#FF0000" />
+        <ColorOption id="1" displayName="Classic Orange" colors="#FF9800" />
+        <ColorOption id="2" displayName="Twelveish Blue" colors="#2196F3" />
+        <ColorOption id="3" displayName="Soft Gray" colors="#AAAAAA" />
     </ColorConfiguration>
 
-    <!-- Show Information toggles -->
-    <BooleanConfiguration
-        id="show_seconds"
-        displayName="Show Seconds"
-        defaultValue="TRUE" />
-
+    <!-- Visibility Toggles -->
     <BooleanConfiguration
         id="show_battery"
-        displayName="Show Battery"
+        displayName="Show Battery Info"
         defaultValue="TRUE" />
 
     <BooleanConfiguration
         id="military_time"
-        displayName="24h Format"
+        displayName="24h Digital Clock"
         defaultValue="FALSE" />
 
 </UserConfigurations>
