@@ -3,34 +3,32 @@
     <!-- Background Color -->
     <ColorConfiguration
         id="background_color"
-        displayName="Background Color"
+        displayName="@string/label_background_color"
         defaultValue="0">
-        <ColorOption id="0" displayName="Black" colors="#000000" />
-        <ColorOption id="1" displayName="Dark Gray" colors="#222222" />
-        <ColorOption id="2" displayName="Deep Blue" colors="#000033" />
-        <ColorOption id="3" displayName="Forest Green" colors="#002200" />
+        <ColorOption id="0" displayName="@string/color_black" colors="#000000" />
+        <ColorOption id="1" displayName="@string/color_dark_gray" colors="#222222" />
+        <ColorOption id="2" displayName="@string/color_deep_blue" colors="#000033" />
     </ColorConfiguration>
 
     <!-- Main Text Color -->
     <ColorConfiguration
         id="main_text_color"
-        displayName="Text Color"
+        displayName="@string/label_text_color"
         defaultValue="0">
-        <ColorOption id="0" displayName="White" colors="#FFFFFF" />
-        <ColorOption id="1" displayName="Classic Orange" colors="#FF9800" />
-        <ColorOption id="2" displayName="Twelveish Blue" colors="#2196F3" />
-        <ColorOption id="3" displayName="Soft Gray" colors="#AAAAAA" />
+        <ColorOption id="0" displayName="@string/color_white" colors="#FFFFFF" />
+        <ColorOption id="1" displayName="@string/color_orange" colors="#FF9800" />
+        <ColorOption id="2" displayName="@string/color_blue" colors="#2196F3" />
     </ColorConfiguration>
 
     <!-- Visibility Toggles -->
     <BooleanConfiguration
         id="show_battery"
-        displayName="Show Battery Info"
+        displayName="@string/label_show_battery"
         defaultValue="TRUE" />
 
     <BooleanConfiguration
         id="military_time"
-        displayName="24h Digital Clock"
+        displayName="@string/label_military_time"
         defaultValue="FALSE" />
 
 </UserConfigurations>

@@ -2,20 +2,20 @@
 <WatchFace width="450" height="450">
     <UserConfigurations>
         <!-- Background Color -->
-        <ColorConfiguration id="background_color" displayName="Background Color" defaultValue="0">
-            <ColorOption id="0" displayName="Black" colors="#000000" />
-            <ColorOption id="1" displayName="Dark Gray" colors="#222222" />
-            <ColorOption id="2" displayName="Deep Blue" colors="#000033" />
+        <ColorConfiguration id="background_color" displayName="@string/label_background_color" defaultValue="0">
+            <ColorOption id="0" displayName="@string/color_black" colors="#000000" />
+            <ColorOption id="1" displayName="@string/color_dark_gray" colors="#222222" />
+            <ColorOption id="2" displayName="@string/color_deep_blue" colors="#000033" />
         </ColorConfiguration>
         <!-- Main Text Color -->
-        <ColorConfiguration id="main_text_color" displayName="Text Color" defaultValue="0">
-            <ColorOption id="0" displayName="White" colors="#FFFFFF" />
-            <ColorOption id="1" displayName="Classic Orange" colors="#FF9800" />
-            <ColorOption id="2" displayName="Twelveish Blue" colors="#2196F3" />
+        <ColorConfiguration id="main_text_color" displayName="@string/label_text_color" defaultValue="0">
+            <ColorOption id="0" displayName="@string/color_white" colors="#FFFFFF" />
+            <ColorOption id="1" displayName="@string/color_orange" colors="#FF9800" />
+            <ColorOption id="2" displayName="@string/color_blue" colors="#2196F3" />
         </ColorConfiguration>
         <!-- Info Toggles -->
-        <BooleanConfiguration id="show_battery" displayName="Show Battery Info" defaultValue="TRUE" />
-        <BooleanConfiguration id="military_time" displayName="24h digital clock" defaultValue="FALSE" />
+        <BooleanConfiguration id="show_battery" displayName="@string/label_show_battery" defaultValue="TRUE" />
+        <BooleanConfiguration id="military_time" displayName="@string/label_military_time" defaultValue="FALSE" />
     </UserConfigurations>
 
     <Scene>
@@ -28,18 +28,19 @@
 
         <!-- Top Info Group -->
         <Group name="TopInfo" x="0" y="40" width="450" height="80">
+            <!-- Digital Clock -->
             <PartText name="DigitalTime" x="0" y="0" width="450" height="30">
                 <Text align="CENTER">
                     <Font family="SYNC_TO_DEVICE" size="22" color="#FFFFFF">
                         <Template><![CDATA[%d:%d%d]]>
-                            <Parameter expression="[CONFIGURATION.military_time] ? [HOUR_0_23] : [HOUR_1_12]" />
+                            <Parameter expression="[CONFIGURATION.military_time] == 'TRUE' ? [HOUR_0_23] : [HOUR_1_12]" />
                             <Parameter expression="[MINUTE] / 10" />
                             <Parameter expression="[MINUTE] % 10" />
                         </Template>
                     </Font>
                 </Text>
             </PartText>
-            <PartText name="SubInfo" x="0" y="35" width="450" height="25">
+            <PartText name="SubInfo" x="0" y="35" width="450" height="25" alpha="[CONFIGURATION.show_battery] == 'TRUE' ? 1.0 : 0.0">
                 <Text align="CENTER">
                     <Font family="SYNC_TO_DEVICE" size="16" color="#AAAAAA">
                         <Template><![CDATA[%s • %d%%]]>
@@ -51,11 +52,22 @@
             </PartText>
         </Group>
 
-        <!-- Main Fuzzy Time (Localized with Alpha Toggles) -->
+        <!-- Main Fuzzy Time -->
         <Group name="FuzzyTimeGroup" x="50" y="130" width="350" height="200">
+            <Condition>
+                <Compare expression="floor([MINUTE] / 5.0) == 2"><PartText x="0" y="0" width="350" height="60"><Text align="CENTER"><Font family="SYNC_TO_DEVICE" size="30" color="[CONFIGURATION.main_text_color]"><Template>@string/seg_2_prefix</Template></Font></Text></PartText></Compare>
+                <Compare expression="floor([MINUTE] / 5.0) == 3"><PartText x="0" y="0" width="350" height="60"><Text align="CENTER"><Font family="SYNC_TO_DEVICE" size="30" color="[CONFIGURATION.main_text_color]"><Template>@string/seg_3_prefix</Template></Font></Text></PartText></Compare>
+                <Compare expression="floor([MINUTE] / 5.0) == 4"><PartText x="0" y="0" width="350" height="60"><Text align="CENTER"><Font family="SYNC_TO_DEVICE" size="30" color="[CONFIGURATION.main_text_color]"><Template>@string/seg_4_prefix</Template></Font></Text></PartText></Compare>
+                <Compare expression="floor([MINUTE] / 5.0) == 5"><PartText x="0" y="0" width="350" height="60"><Text align="CENTER"><Font family="SYNC_TO_DEVICE" size="30" color="[CONFIGURATION.main_text_color]"><Template>@string/seg_5_prefix</Template></Font></Text></PartText></Compare>
+                <Compare expression="floor([MINUTE] / 5.0) == 6"><PartText x="0" y="0" width="350" height="60"><Text align="CENTER"><Font family="SYNC_TO_DEVICE" size="30" color="[CONFIGURATION.main_text_color]"><Template>@string/seg_6_prefix</Template></Font></Text></PartText></Compare>
+                <Compare expression="floor([MINUTE] / 5.0) == 7"><PartText x="0" y="0" width="350" height="60"><Text align="CENTER"><Font family="SYNC_TO_DEVICE" size="30" color="[CONFIGURATION.main_text_color]"><Template>@string/seg_7_prefix</Template></Font></Text></PartText></Compare>
+                <Compare expression="floor([MINUTE] / 5.0) == 8"><PartText x="0" y="0" width="350" height="60"><Text align="CENTER"><Font family="SYNC_TO_DEVICE" size="30" color="[CONFIGURATION.main_text_color]"><Template>@string/seg_8_prefix</Template></Font></Text></PartText></Compare>
+                <Compare expression="floor([MINUTE] / 5.0) == 9"><PartText x="0" y="0" width="350" height="60"><Text align="CENTER"><Font family="SYNC_TO_DEVICE" size="30" color="[CONFIGURATION.main_text_color]"><Template>@string/seg_9_prefix</Template></Font></Text></PartText></Compare>
+                <Compare expression="floor([MINUTE] / 5.0) == 10"><PartText x="0" y="0" width="350" height="60"><Text align="CENTER"><Font family="SYNC_TO_DEVICE" size="30" color="[CONFIGURATION.main_text_color]"><Template>@string/seg_10_prefix</Template></Font></Text></PartText></Compare>
+                <Compare expression="floor([MINUTE] / 5.0) == 11"><PartText x="0" y="0" width="350" height="60"><Text align="CENTER"><Font family="SYNC_TO_DEVICE" size="30" color="[CONFIGURATION.main_text_color]"><Template>@string/seg_11_prefix</Template></Font></Text></PartText></Compare>
+            </Condition>
 
-            <!-- Hour Logic: minute >= 38 is next hour -->
-            <Group name="Hour" x="0" y="65" width="350" height="70">
+            <Group name="HourGroup" x="0" y="65" width="350" height="70">
                 <Condition>
                     <Compare expression="([MINUTE] >= 38 ? ([HOUR_1_12] % 12 + 1) : [HOUR_1_12]) == 1"><PartText x="0" y="0" width="350" height="70"><Text align="CENTER"><Font family="SYNC_TO_DEVICE" size="54" color="[CONFIGURATION.main_text_color]"><Template>@string/hour_1</Template></Font></Text></PartText></Compare>
                     <Compare expression="([MINUTE] >= 38 ? ([HOUR_1_12] % 12 + 1) : [HOUR_1_12]) == 2"><PartText x="0" y="0" width="350" height="70"><Text align="CENTER"><Font family="SYNC_TO_DEVICE" size="54" color="[CONFIGURATION.main_text_color]"><Template>@string/hour_2</Template></Font></Text></PartText></Compare>
@@ -72,34 +84,23 @@
                 </Condition>
             </Group>
 
-            <!-- Prefix Group (x-aligned to avoid overlaps) -->
-            <Group name="Prefix" x="0" y="0" width="350" height="60">
-                <Condition>
-                    <Compare expression="[MINUTE] >= 10 &amp;&amp; [MINUTE] &lt; 15"><PartText x="0" y="0" width="350" height="60"><Text align="CENTER"><Font family="SYNC_TO_DEVICE" size="30" color="[CONFIGURATION.main_text_color]"><Template>@string/seg_2_prefix</Template></Font></Text></PartText></Compare>
-                    <Compare expression="[MINUTE] >= 15 &amp;&amp; [MINUTE] &lt; 20"><PartText x="0" y="0" width="350" height="60"><Text align="CENTER"><Font family="SYNC_TO_DEVICE" size="30" color="[CONFIGURATION.main_text_color]"><Template>@string/seg_3_prefix</Template></Font></Text></PartText></Compare>
-                    <Compare expression="[MINUTE] >= 20 &amp;&amp; [MINUTE] &lt; 25"><PartText x="0" y="0" width="350" height="60"><Text align="CENTER"><Font family="SYNC_TO_DEVICE" size="30" color="[CONFIGURATION.main_text_color]"><Template>@string/seg_4_prefix</Template></Font></Text></PartText></Compare>
-                    <Compare expression="[MINUTE] >= 25 &amp;&amp; [MINUTE] &lt; 30"><PartText x="0" y="0" width="350" height="60"><Text align="CENTER"><Font family="SYNC_TO_DEVICE" size="30" color="[CONFIGURATION.main_text_color]"><Template>@string/seg_5_prefix</Template></Font></Text></PartText></Compare>
-                    <Compare expression="[MINUTE] >= 30 &amp;&amp; [MINUTE] &lt; 40"><PartText x="0" y="0" width="350" height="60"><Text align="CENTER"><Font family="SYNC_TO_DEVICE" size="30" color="[CONFIGURATION.main_text_color]"><Template>@string/seg_6_prefix</Template></Font></Text></PartText></Compare>
-                    <Compare expression="[MINUTE] >= 40 &amp;&amp; [MINUTE] &lt; 50"><PartText x="0" y="0" width="350" height="60"><Text align="CENTER"><Font family="SYNC_TO_DEVICE" size="30" color="[CONFIGURATION.main_text_color]"><Template>@string/seg_8_prefix</Template></Font></Text></PartText></Compare>
-                    <Compare expression="[MINUTE] >= 50 &amp;&amp; [MINUTE] &lt; 55"><PartText x="0" y="0" width="350" height="60"><Text align="CENTER"><Font family="SYNC_TO_DEVICE" size="30" color="[CONFIGURATION.main_text_color]"><Template>@string/seg_10_prefix</Template></Font></Text></PartText></Compare>
-                    <Compare expression="[MINUTE] >= 55 &amp;&amp; [MINUTE] &lt; 60"><PartText x="0" y="0" width="350" height="60"><Text align="CENTER"><Font family="SYNC_TO_DEVICE" size="30" color="[CONFIGURATION.main_text_color]"><Template>@string/seg_11_prefix</Template></Font></Text></PartText></Compare>
-                </Condition>
-            </Group>
-
-            <!-- Suffix Group -->
-            <Group name="Suffix" x="0" y="135" width="350" height="60">
-                <Condition>
-                    <Compare expression="[MINUTE] &lt; 5"><PartText x="0" y="0" width="350" height="60"><Text align="CENTER"><Font family="SYNC_TO_DEVICE" size="30" color="[CONFIGURATION.main_text_color]"><Template>@string/seg_0_suffix</Template></Font></Text></PartText></Compare>
-                    <Compare expression="[MINUTE] >= 5 &amp;&amp; [MINUTE] &lt; 10"><PartText x="0" y="0" width="350" height="60"><Text align="CENTER"><Font family="SYNC_TO_DEVICE" size="30" color="[CONFIGURATION.main_text_color]"><Template>@string/seg_1_suffix</Template></Font></Text></PartText></Compare>
-                    <Compare expression="[MINUTE] >= 15 &amp;&amp; [MINUTE] &lt; 20"><PartText x="0" y="0" width="350" height="60"><Text align="CENTER"><Font family="SYNC_TO_DEVICE" size="30" color="[CONFIGURATION.main_text_color]"><Template>@string/seg_3_suffix</Template></Font></Text></PartText></Compare>
-                    <Compare expression="[MINUTE] >= 30 &amp;&amp; [MINUTE] &lt; 35"><PartText x="0" y="0" width="350" height="60"><Text align="CENTER"><Font family="SYNC_TO_DEVICE" size="30" color="[CONFIGURATION.main_text_color]"><Template>@string/seg_6_suffix</Template></Font></Text></PartText></Compare>
-                    <Compare expression="[MINUTE] >= 35 &amp;&amp; [MINUTE] &lt; 40"><PartText x="0" y="0" width="350" height="60"><Text align="CENTER"><Font family="SYNC_TO_DEVICE" size="30" color="[CONFIGURATION.main_text_color]"><Template>@string/seg_7_suffix</Template></Font></Text></PartText></Compare>
-                    <Compare expression="[MINUTE] >= 45 &amp;&amp; [MINUTE] &lt; 50"><PartText x="0" y="0" width="350" height="60"><Text align="CENTER"><Font family="SYNC_TO_DEVICE" size="30" color="[CONFIGURATION.main_text_color]"><Template>@string/seg_9_suffix</Template></Font></Text></PartText></Compare>
-                </Condition>
-            </Group>
+            <Condition>
+                <Compare expression="floor([MINUTE] / 5.0) == 0"><PartText x="0" y="135" width="350" height="60"><Text align="CENTER"><Font family="SYNC_TO_DEVICE" size="30" color="[CONFIGURATION.main_text_color]"><Template>@string/seg_0_suffix</Template></Font></Text></PartText></Compare>
+                <Compare expression="floor([MINUTE] / 5.0) == 1"><PartText x="0" y="135" width="350" height="60"><Text align="CENTER"><Font family="SYNC_TO_DEVICE" size="30" color="[CONFIGURATION.main_text_color]"><Template>@string/seg_1_suffix</Template></Font></Text></PartText></Compare>
+                <Compare expression="floor([MINUTE] / 5.0) == 2"><PartText x="0" y="135" width="350" height="60"><Text align="CENTER"><Font family="SYNC_TO_DEVICE" size="30" color="[CONFIGURATION.main_text_color]"><Template>@string/seg_2_suffix</Template></Font></Text></PartText></Compare>
+                <Compare expression="floor([MINUTE] / 5.0) == 3"><PartText x="0" y="135" width="350" height="60"><Text align="CENTER"><Font family="SYNC_TO_DEVICE" size="30" color="[CONFIGURATION.main_text_color]"><Template>@string/seg_3_suffix</Template></Font></Text></PartText></Compare>
+                <Compare expression="floor([MINUTE] / 5.0) == 4"><PartText x="0" y="135" width="350" height="60"><Text align="CENTER"><Font family="SYNC_TO_DEVICE" size="30" color="[CONFIGURATION.main_text_color]"><Template>@string/seg_4_suffix</Template></Font></Text></PartText></Compare>
+                <Compare expression="floor([MINUTE] / 5.0) == 5"><PartText x="0" y="135" width="350" height="60"><Text align="CENTER"><Font family="SYNC_TO_DEVICE" size="30" color="[CONFIGURATION.main_text_color]"><Template>@string/seg_5_suffix</Template></Font></Text></PartText></Compare>
+                <Compare expression="floor([MINUTE] / 5.0) == 6"><PartText x="0" y="135" width="350" height="60"><Text align="CENTER"><Font family="SYNC_TO_DEVICE" size="30" color="[CONFIGURATION.main_text_color]"><Template>@string/seg_6_suffix</Template></Font></Text></PartText></Compare>
+                <Compare expression="floor([MINUTE] / 5.0) == 7"><PartText x="0" y="135" width="350" height="60"><Text align="CENTER"><Font family="SYNC_TO_DEVICE" size="30" color="[CONFIGURATION.main_text_color]"><Template>@string/seg_7_suffix</Template></Font></Text></PartText></Compare>
+                <Compare expression="floor([MINUTE] / 5.0) == 8"><PartText x="0" y="135" width="350" height="60"><Text align="CENTER"><Font family="SYNC_TO_DEVICE" size="30" color="[CONFIGURATION.main_text_color]"><Template>@string/seg_8_suffix</Template></Font></Text></PartText></Compare>
+                <Compare expression="floor([MINUTE] / 5.0) == 9"><PartText x="0" y="135" width="350" height="60"><Text align="CENTER"><Font family="SYNC_TO_DEVICE" size="30" color="[CONFIGURATION.main_text_color]"><Template>@string/seg_9_suffix</Template></Font></Text></PartText></Compare>
+                <Compare expression="floor([MINUTE] / 5.0) == 10"><PartText x="0" y="135" width="350" height="60"><Text align="CENTER"><Font family="SYNC_TO_DEVICE" size="30" color="[CONFIGURATION.main_text_color]"><Template>@string/seg_10_suffix</Template></Font></Text></PartText></Compare>
+                <Compare expression="floor([MINUTE] / 5.0) == 11"><PartText x="0" y="135" width="350" height="60"><Text align="CENTER"><Font family="SYNC_TO_DEVICE" size="30" color="[CONFIGURATION.main_text_color]"><Template>@string/seg_11_suffix</Template></Font></Text></PartText></Compare>
+            </Condition>
         </Group>
 
-        <!-- Complications (Shifted up to be within safe area) -->
+        <!-- Complications -->
         <ComplicationSlot slotId="1" supportedTypes="SHORT_TEXT" x="75" y="320" width="80" height="80">
             <BoundingOval x="0" y="0" width="80" height="80" />
             <DefaultProviderPolicy defaultSystemProvider="WATCH_BATTERY" defaultSystemProviderType="SHORT_TEXT" />

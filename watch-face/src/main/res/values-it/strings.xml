@@ -2,6 +2,19 @@
 <resources>
     <!-- Hour Names (Italian) -->
     <string name="hour_1">l\'una</string>
+
+    <!-- Configuration Labels -->
+    <string name="label_background_color">Colore Sfondo</string>
+    <string name="label_text_color">Colore Testo</string>
+    <string name="label_show_battery">Mostra Batteria</string>
+    <string name="label_military_time">Orologio 24h</string>
+
+    <string name="color_black">Nero</string>
+    <string name="color_dark_gray">Grigio Scuro</string>
+    <string name="color_deep_blue">Blu Profondo</string>
+    <string name="color_white">Bianco</string>
+    <string name="color_orange">Arancione</string>
+    <string name="color_blue">Blu</string>
     <string name="hour_2">le due</string>
     <string name="hour_3">le tre</string>
     <string name="hour_4">le quattro</string>

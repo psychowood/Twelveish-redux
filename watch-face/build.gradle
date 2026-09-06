@@ -4,7 +4,7 @@ plugins {
 
 android {
     namespace 'com.psychowood.twelveish.wff'
-    compileSdk 35
+    compileSdk 37
 
     defaultConfig {
         applicationId "com.psychowood.twelveish.wff"

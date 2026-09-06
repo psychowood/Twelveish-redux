@@ -2,6 +2,19 @@
 <resources>
     <string name="app_name">Twelveish Redux WFF</string>
 
+    <!-- Configuration Labels -->
+    <string name="label_background_color">Background Color</string>
+    <string name="label_text_color">Text Color</string>
+    <string name="label_show_battery">Show Battery Info</string>
+    <string name="label_military_time">24h Digital Clock</string>
+
+    <string name="color_black">Black</string>
+    <string name="color_dark_gray">Dark Gray</string>
+    <string name="color_deep_blue">Deep Blue</string>
+    <string name="color_white">White</string>
+    <string name="color_orange">Orange</string>
+    <string name="color_blue">Blue</string>
+
     <!-- Hour Names (English) -->
     <string name="hour_1">one</string>
     <string name="hour_2">two</string>
