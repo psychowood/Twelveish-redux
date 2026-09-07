@@ -37,4 +37,6 @@
     <string name="seg_10_suffix">lesz</string>
     <string name="seg_11_prefix">mindjárt</string>
     <string name="seg_11_suffix"></string>
+    <string name="hour_0">twelve</string>
+
 </resources>

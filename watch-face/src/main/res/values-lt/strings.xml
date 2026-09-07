@@ -39,4 +39,6 @@
     <string name="seg_10_suffix"></string>
     <string name="seg_11_prefix">apie</string>
     <string name="seg_11_suffix"></string>
+    <string name="hour_0">twelve</string>
+
 </resources>

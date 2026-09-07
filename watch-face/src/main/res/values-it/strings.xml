@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Hour Names (Italian) -->
+    <string name="hour_0">mezzanotte</string>
     <string name="hour_1">l\'una</string>
+    <string name="hour_2">le due</string>
+    <string name="hour_3">le tre</string>
+    <string name="hour_4">le quattro</string>
+    <string name="hour_5">le cinque</string>
+    <string name="hour_6">le sei</string>
+    <string name="hour_7">le sette</string>
+    <string name="hour_8">le otto</string>
+    <string name="hour_9">le nove</string>
+    <string name="hour_10">le dieci</string>
+    <string name="hour_11">le undici</string>
+    <string name="hour_12">mezzogiorno</string>
 
     <!-- Configuration Labels -->
     <string name="label_background_color">Colore Sfondo</string>
@@ -15,17 +27,6 @@
     <string name="color_white">Bianco</string>
     <string name="color_orange">Arancione</string>
     <string name="color_blue">Blu</string>
-    <string name="hour_2">le due</string>
-    <string name="hour_3">le tre</string>
-    <string name="hour_4">le quattro</string>
-    <string name="hour_5">le cinque</string>
-    <string name="hour_6">le sei</string>
-    <string name="hour_7">le sette</string>
-    <string name="hour_8">le otto</string>
-    <string name="hour_9">le nove</string>
-    <string name="hour_10">le dieci</string>
-    <string name="hour_11">le undici</string>
-    <string name="hour_12">le dodici</string>
 
     <!-- Fuzzy Segments (Italian) -->
     <string name="seg_0_prefix"></string>

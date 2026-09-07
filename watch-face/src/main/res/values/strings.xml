@@ -16,6 +16,7 @@
     <string name="color_blue">Blue</string>
 
     <!-- Hour Names (English) -->
+    <string name="hour_0">twelve</string>
     <string name="hour_1">one</string>
     <string name="hour_2">two</string>
     <string name="hour_3">three</string>

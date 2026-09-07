@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Hour Names (German) -->
+    <string name="hour_0">zwölf</string>
     <string name="hour_1">eins</string>
     <string name="hour_2">zwei</string>
     <string name="hour_3">drei</string>
@@ -14,7 +14,6 @@
     <string name="hour_11">elf</string>
     <string name="hour_12">zwölf</string>
 
-    <!-- Fuzzy Segments (German) -->
     <string name="seg_0_prefix">kurz nach</string>
     <string name="seg_0_suffix"></string>
     <string name="seg_1_prefix">bald Viertel nach</string>
