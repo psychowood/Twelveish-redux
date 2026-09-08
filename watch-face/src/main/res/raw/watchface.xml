@@ -44,8 +44,9 @@
                 <Transform target="alpha" value="[CONFIGURATION.show_battery] ? 255 : 0" />
                 <Text align="CENTER">
                     <Font family="SYNC_TO_DEVICE" size="16" color="[CONFIGURATION.main_text_color]">
-                        <Template><![CDATA[%s • %d%%]]>
-                            <Parameter expression="[DAY_OF_WEEK_S] + ' ' + [DAY]" />
+                        <Template><![CDATA[%s %s • %d%%]]>
+                            <Parameter expression="[DAY_OF_WEEK_S]" />
+                            <Parameter expression="[DAY]" />
                             <Parameter expression="[BATTERY_PERCENT]" />
                         </Template>
                     </Font>
