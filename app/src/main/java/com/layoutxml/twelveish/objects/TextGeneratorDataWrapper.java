@@ -10,4 +10,8 @@ public class TextGeneratorDataWrapper {
     private float baseXCoordinate;
     private float baseYCoordinate;
     private float textSize;
+
+    public String getMainText() {
+        return mainText;
+    }
 }
