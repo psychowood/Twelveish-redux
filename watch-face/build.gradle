@@ -15,12 +15,21 @@ android {
     }
 
     buildTypes {
-        release {
-            minifyEnabled false
+        debug {
+            minifyEnabled true
         }
+
+        release {
+            minifyEnabled true
+            shrinkResources false
+        }
+    }
+
+    buildFeatures {
+        buildConfig false
+        resValues false
     }
 }
 
 dependencies {
-    // Watch Face Format modules don't typically have code dependencies
 }
