@@ -83,7 +83,6 @@
                 <PartText x="0" y="0" width="350" height="70"><Transform target="alpha" value="(([MINUTE] >= 38 ? ([HOUR_1_12] % 12 + 1) : [HOUR_1_12])) == 9 ? 255 : 0" /><Text align="CENTER"><Font family="SYNC_TO_DEVICE" size="54" color="[CONFIGURATION.main_text_color]"><Template>@string/hour_9</Template></Font></Text></PartText>
                 <PartText x="0" y="0" width="350" height="70"><Transform target="alpha" value="(([MINUTE] >= 38 ? ([HOUR_1_12] % 12 + 1) : [HOUR_1_12])) == 10 ? 255 : 0" /><Text align="CENTER"><Font family="SYNC_TO_DEVICE" size="54" color="[CONFIGURATION.main_text_color]"><Template>@string/hour_10</Template></Font></Text></PartText>
                 <PartText x="0" y="0" width="350" height="70"><Transform target="alpha" value="(([MINUTE] >= 38 ? ([HOUR_1_12] % 12 + 1) : [HOUR_1_12])) == 11 ? 255 : 0" /><Text align="CENTER"><Font family="SYNC_TO_DEVICE" size="54" color="[CONFIGURATION.main_text_color]"><Template>@string/hour_11</Template></Font></Text></PartText>
-                <PartText x="0" y="0" width="350" height="70"><Transform target="alpha" value="(([MINUTE] >= 38 ? ([HOUR_1_12] % 12 + 1) : [HOUR_1_12])) == 12 || (([MINUTE] >= 38 ? ([HOUR_1_12] % 12 + 1) : [HOUR_1_12])) == 0 ? 255 : 0" /><Text align="CENTER"><Font family="SYNC_TO_DEVICE" size="54" color="[CONFIGURATION.main_text_color]"><Template>@string/hour_12</Template></Font></Text></PartText>
             </Group>
 
             <!-- Suffix segments -->
