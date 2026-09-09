@@ -11,27 +11,41 @@ This suite defines the required functional tests for the **Watch Face Format (WF
 
 ## 2. Core Fuzzy Logic (Language: English)
 Verify the fuzzy time rendering logic against the following minute-to-string mapping.
-**Rule:** Hour shifts to `Next Hour` when `minute >= 38`.
+**Rule:** Hour shifts to `Next Hour` when `minute >= 40`.
 
 | Minute Range | Prefix | Hour | Suffix | Output Example (11:XX) |
 | :--- | :--- | :--- | :--- | :--- |
-| `00 - 04` | - | Current | `ish` | eleven ish |
-| `05 - 09` | - | Current | `or so` | eleven or so |
-| `10 - 14` | `a quarter past` | Current | - | a quarter past eleven |
-| `15 - 19` | `a quarter past` | Current | `or so` | a quarter past eleven or so |
-| `20 - 24` | `almost half past`| Current | - | almost half past eleven |
-| `25 - 29` | `around half past`| Current | - | around half past eleven |
-| `30 - 34` | `half past` | Current | `ish` | half past eleven ish |
-| `35 - 37` | `half past` | Current | `or so` | half past eleven or so |
-| `38 - 39` | `half past` | **Next** | `or so` | half past twelve or so |
-| `40 - 44` | `a quarter to` | Next | - | a quarter to twelve |
-| `45 - 49` | `a quarter to` | Next | `or so` | a quarter to twelve or so |
-| `50 - 54` | `approaching` | Next | - | approaching twelve |
-| `55 - 59` | `almost` | Next | - | almost twelve |
+| `00` | - | Current | - | Eleven |
+| `01 - 04` | - | Current | `ish` | Eleven ish |
+| `05 - 09` | - | Current | `or so` | Eleven or so |
+| `10 - 14` | `a quarter past` | Current | - | A quarter past eleven |
+| `15 - 19` | `a quarter past` | Current | `or so` | A quarter past eleven or so |
+| `20 - 24` | `almost half past`| Current | - | Almost half past eleven |
+| `25 - 29` | `around half past`| Current | - | Around half past eleven |
+| `30 - 34` | `half past` | Current | `ish` | Half past eleven ish |
+| `35 - 39` | `half past` | Current | `or so` | Half past eleven or so |
+| `40 - 44` | `a quarter to` | Next | - | A quarter to twelve |
+| `45 - 49` | `a quarter to` | Next | `or so` | A quarter to twelve or so |
+| `50 - 54` | `approaching` | Next | - | Approaching twelve |
+| `55 - 59` | `almost` | Next | - | Almost twelve |
 
 ---
 
-## 3. System Information & Localization
+## 3. Automated Comparison Testing
+To ensure consistency between the Legacy (Java) and WFF (XML) versions, a dynamic comparison test is available. This test parses the real XML files and compares them with the original Java logic for all 1440 daily combinations across all locales.
+
+### Run Comparison Test
+Run the following command in the terminal:
+```bash
+./gradlew :app:testDebugUnitTest --tests "com.layoutxml.twelveish.FuzzyTimeComparisonTest"
+```
+
+The test generates a detailed report at:
+`fuzzy_time_matrix.artifact.md` (or the project root)
+
+---
+
+## 4. System Information & Localization
 
 ### 3.1 Digital Clock & Sub-Info
 - [ ] **Digital Time:** Verify `HH:MM` format at the top.

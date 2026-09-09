@@ -277,14 +277,21 @@ public class TextGenerator extends AsyncTask<Void, Void, TextGeneratorDataWrappe
 
         if (hourIndex < 0) {
             if (preferenceManager.isMilitaryFormatText()) {
-                hourIndex = 24 + hourIndex; // Fixed bug from original: was 24 - hourIndex where hourIndex is negative
+                hourIndex = 24 + hourIndex;
             } else {
                 hourIndex = 12 + hourIndex;
             }
         }
 
-        if (!preferenceManager.isMilitaryFormatText() && hourIndex == 0) {
-            hourIndex = 12;
+        if (!preferenceManager.isMilitaryFormatText() && (hourIndex == 0 || hourIndex == 12)) {
+            int currentHour24 = calendar.get(Calendar.HOUR_OF_DAY);
+            int shift = languageManager.getTimeShift(minuteIndex);
+            int targetHour24 = (currentHour24 + shift + 24) % 24;
+            if (targetHour24 == 12) {
+                hourIndex = 12;
+            } else if (targetHour24 == 0) {
+                hourIndex = 0;
+            }
         }
         return hourIndex;
     }

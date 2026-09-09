@@ -31,7 +31,7 @@ public class LanguageManager {
                 suffixes = context.getResources().getStringArray(R.array.SuffixesNL);
                 weekdays = context.getResources().getStringArray(R.array.WeekDaysNL);
                 hours = context.getResources().getStringArray(R.array.ExactTimesNL);
-                timeShift = new int[]{0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1};
+                timeShift = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1};
                 separatePrefix = new boolean[]{true, true, true, true, true, true, true, true, true, true, true, true};
                 separateSuffix = new boolean[]{false, false, false, false, false, false, false, false, false, false, false, false};
                 break;
@@ -40,7 +40,7 @@ public class LanguageManager {
                 suffixes = context.getResources().getStringArray(R.array.SuffixesDE);
                 weekdays = context.getResources().getStringArray(R.array.WeekDaysDE);
                 hours = context.getResources().getStringArray(R.array.ExactTimesDE);
-                timeShift = new int[]{0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1};
+                timeShift = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1};
                 separatePrefix = new boolean[]{true, true, true, true, true, true, true, true, true, true, true, true};
                 separateSuffix = new boolean[]{false, false, false, true, false, false, false, false, false, true, false, false};
                 break;
@@ -49,7 +49,7 @@ public class LanguageManager {
                 suffixes = context.getResources().getStringArray(R.array.SuffixesEL);
                 weekdays = context.getResources().getStringArray(R.array.WeekDaysEL);
                 hours = context.getResources().getStringArray(R.array.ExactTimesEL);
-                timeShift = new int[]{0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1};
+                timeShift = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1};
                 separatePrefix = new boolean[]{true, false, true, true, true, true, true, true, true, true, true, true};
                 separateSuffix = new boolean[]{false, true, true, true, true, true, true, true, true, true, false, false};
                 break;
@@ -67,7 +67,7 @@ public class LanguageManager {
                 suffixes = context.getResources().getStringArray(R.array.SuffixesFI);
                 weekdays = context.getResources().getStringArray(R.array.WeekDaysFI);
                 hours = context.getResources().getStringArray(R.array.ExactTimesFI);
-                timeShift = new int[]{0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1};
+                timeShift = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1};
                 separatePrefix = new boolean[]{false, true, true, true, true, true, true, true, true, true, true, true};
                 separateSuffix = new boolean[]{false, false, false, false, false, false, false, false, false, false, false, false};
                 break;
@@ -76,7 +76,7 @@ public class LanguageManager {
                 suffixes = context.getResources().getStringArray(R.array.SuffixesNO);
                 weekdays = context.getResources().getStringArray(R.array.WeekDaysNO);
                 hours = context.getResources().getStringArray(R.array.ExactTimesNO);
-                timeShift = new int[]{0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1};
+                timeShift = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1};
                 separatePrefix = new boolean[]{false, true, true, true, true, true, true, true, true, true, true, true};
                 separateSuffix = new boolean[]{true, false, false, false, false, false, false, false, false, false, false, false};
                 break;
@@ -94,7 +94,7 @@ public class LanguageManager {
                 suffixes = context.getResources().getStringArray(R.array.SuffixesHU);
                 weekdays = context.getResources().getStringArray(R.array.WeekDaysHU);
                 hours = context.getResources().getStringArray(R.array.ExactTimesHU);
-                timeShift = new int[]{0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
+                timeShift = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1};
                 separatePrefix = new boolean[]{false, false, true, true, true, true, true, true, true, true, false, true};
                 separateSuffix = new boolean[]{true, true, true, false, false, true, false, true, false, true, true, false};
                 break;
@@ -139,7 +139,7 @@ public class LanguageManager {
                 suffixes = context.getResources().getStringArray(R.array.SuffixesSV);
                 weekdays = context.getResources().getStringArray(R.array.WeekDaysSV);
                 hours = context.getResources().getStringArray(R.array.ExactTimesSV);
-                timeShift = new int[]{0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1};
+                timeShift = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1};
                 separatePrefix = new boolean[]{false, true, true, true, true, true, true, true, true, true, true, true};
                 separateSuffix = new boolean[]{true, false, false, false, false, false, true, false, false, false, false, false};
                 break;
