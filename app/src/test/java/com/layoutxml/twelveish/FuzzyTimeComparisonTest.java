@@ -42,7 +42,7 @@ public class FuzzyTimeComparisonTest {
     @Test
     public void generateComparisonReport() throws Exception {
         String[] locales = {"en", "de", "el", "es", "fi", "fr", "hu", "it", "lt", "no", "nl", "pt", "ru", "sv"};
-        File reportFile = new File("/Users/gg/dev/Twelveish-redux/fuzzy_time_matrix.artifact.md");
+        File reportFile = new File("/Users/gg/dev/Twelveish-redux/test/fuzzy_time_matrix.artifact.md");
         
         try (FileWriter writer = new FileWriter(reportFile)) {
             writer.write("# Fuzzy Time Comparison Matrix\n\n");

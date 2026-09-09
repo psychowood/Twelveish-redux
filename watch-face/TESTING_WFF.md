@@ -41,7 +41,7 @@ Run the following command in the terminal:
 ```
 
 The test generates a detailed report at:
-`fuzzy_time_matrix.artifact.md` (or the project root)
+`test/fuzzy_time_matrix.artifact.md`
 
 ---
 
