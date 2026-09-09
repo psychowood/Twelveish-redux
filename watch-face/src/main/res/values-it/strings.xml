@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Hour Names (Italian) -->
-    <string name="hour_0">mezzanotte</string>
-    <string name="hour_1">l\'una</string>
-    <string name="hour_2">le due</string>
-    <string name="hour_3">le tre</string>
-    <string name="hour_4">le quattro</string>
-    <string name="hour_5">le cinque</string>
-    <string name="hour_6">le sei</string>
-    <string name="hour_7">le sette</string>
-    <string name="hour_8">le otto</string>
-    <string name="hour_9">le nove</string>
-    <string name="hour_10">le dieci</string>
-    <string name="hour_11">le undici</string>
-    <string name="hour_12">mezzogiorno</string>
+    <string name="hour_0">Mezzanotte</string>
+    <string name="hour_1">L\'Una</string>
+    <string name="hour_2">Le Due</string>
+    <string name="hour_3">Le Tre</string>
+    <string name="hour_4">Le Quattro</string>
+    <string name="hour_5">Le Cinque</string>
+    <string name="hour_6">Le Sei</string>
+    <string name="hour_7">Le Sette</string>
+    <string name="hour_8">Le Otto</string>
+    <string name="hour_9">Le Nove</string>
+    <string name="hour_10">Le Dieci</string>
+    <string name="hour_11">Le Undici</string>
+    <string name="hour_12">Mezzogiorno</string>
 
     <!-- Configuration Labels -->
     <string name="label_background_color">Colore Sfondo</string>
@@ -30,27 +30,27 @@
 
     <!-- Fuzzy Segments (Italian) -->
     <string name="seg_0_prefix"></string>
-    <string name="seg_0_suffix">e qualcosa</string>
+    <string name="seg_0_suffix"> E Qualcosa</string>
     <string name="seg_1_prefix"></string>
-    <string name="seg_1_suffix">e passa</string>
-    <string name="seg_2_prefix">quasi</string>
-    <string name="seg_2_suffix">e un quarto</string>
-    <string name="seg_3_prefix">circa</string>
-    <string name="seg_3_suffix">e un quarto</string>
-    <string name="seg_4_prefix">quasi</string>
-    <string name="seg_4_suffix">e mezza</string>
-    <string name="seg_5_prefix">pressapoco</string>
-    <string name="seg_5_suffix">e mezza</string>
-    <string name="seg_6_prefix">circa</string>
-    <string name="seg_6_suffix">e mezza</string>
-    <string name="seg_7_prefix">poco più che</string>
-    <string name="seg_7_suffix">e mezza</string>
-    <string name="seg_8_prefix">quasi</string>
-    <string name="seg_8_suffix">meno un quarto</string>
+    <string name="seg_1_suffix"> E Passa</string>
+    <string name="seg_2_prefix">Quasi </string>
+    <string name="seg_2_suffix"> E Un Quarto</string>
+    <string name="seg_3_prefix">Circa </string>
+    <string name="seg_3_suffix"> E Un Quarto</string>
+    <string name="seg_4_prefix">Quasi </string>
+    <string name="seg_4_suffix"> E Mezza</string>
+    <string name="seg_5_prefix">Pressapoco </string>
+    <string name="seg_5_suffix"> E Mezza</string>
+    <string name="seg_6_prefix">Circa </string>
+    <string name="seg_6_suffix"> E Mezza</string>
+    <string name="seg_7_prefix">Poco Più\u00A0Che </string>
+    <string name="seg_7_suffix"> E Mezza</string>
+    <string name="seg_8_prefix">Quasi </string>
+    <string name="seg_8_suffix"> Meno Un Quarto</string>
     <string name="seg_9_prefix"></string>
-    <string name="seg_9_suffix">meno qualcosa</string>
-    <string name="seg_10_prefix">quasi</string>
+    <string name="seg_9_suffix"> Meno Qualcosa</string>
+    <string name="seg_10_prefix">Quasi </string>
     <string name="seg_10_suffix"></string>
-    <string name="seg_11_prefix">pressapoco</string>
+    <string name="seg_11_prefix">Pressapoco </string>
     <string name="seg_11_suffix"></string>
 </resources>

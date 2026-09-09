@@ -1,42 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="hour_1">une heure</string>
-    <string name="hour_2">deux heures</string>
-    <string name="hour_3">trois heures</string>
-    <string name="hour_4">quatre heures</string>
-    <string name="hour_5">cinq heures</string>
-    <string name="hour_6">six heures</string>
-    <string name="hour_7">sept heures</string>
-    <string name="hour_8">huit heures</string>
-    <string name="hour_9">neuf heures</string>
-    <string name="hour_10">dix heures</string>
-    <string name="hour_11">onze heures</string>
-    <string name="hour_12">douze heures</string>
+    <string name="hour_0">Douze Heures</string>
+    <string name="hour_1">Une Heure</string>
+    <string name="hour_2">Deux Heures</string>
+    <string name="hour_3">Trois Heures</string>
+    <string name="hour_4">Quatre Heures</string>
+    <string name="hour_5">Cinq Heures</string>
+    <string name="hour_6">Six Heures</string>
+    <string name="hour_7">Sept Heures</string>
+    <string name="hour_8">Huit Heures</string>
+    <string name="hour_9">Neuf Heures</string>
+    <string name="hour_10">Dix Heures</string>
+    <string name="hour_11">Onze Heures</string>
+    <string name="hour_12">Douze Heures</string>
 
     <string name="seg_0_prefix"></string>
     <string name="seg_0_suffix"></string>
-    <string name="seg_1_prefix">environ</string>
+    <string name="seg_1_prefix">Environ </string>
     <string name="seg_1_suffix"></string>
     <string name="seg_2_prefix"></string>
-    <string name="seg_2_suffix">dix</string>
+    <string name="seg_2_suffix"> Dix</string>
     <string name="seg_3_prefix"></string>
-    <string name="seg_3_suffix">et quart</string>
+    <string name="seg_3_suffix"> Et Quart</string>
     <string name="seg_4_prefix"></string>
-    <string name="seg_4_suffix">et vingt</string>
+    <string name="seg_4_suffix"> Et Vingt</string>
     <string name="seg_5_prefix"></string>
-    <string name="seg_5_suffix">vingt-cinq</string>
+    <string name="seg_5_suffix"> Vingt-Cinq</string>
     <string name="seg_6_prefix"></string>
-    <string name="seg_6_suffix">et demi</string>
-    <string name="seg_7_prefix">environ</string>
-    <string name="seg_7_suffix">et demi</string>
+    <string name="seg_6_suffix"> Et Demi</string>
+    <string name="seg_7_prefix">Environ </string>
+    <string name="seg_7_suffix"> Et Demi</string>
     <string name="seg_8_prefix"></string>
-    <string name="seg_8_suffix">moins vingt</string>
+    <string name="seg_8_suffix"> Moins Vingt</string>
     <string name="seg_9_prefix"></string>
-    <string name="seg_9_suffix">moins quart</string>
+    <string name="seg_9_suffix"> Moins Quart</string>
     <string name="seg_10_prefix"></string>
-    <string name="seg_10_suffix">moins dix</string>
+    <string name="seg_10_suffix"> Moins Dix</string>
     <string name="seg_11_prefix"></string>
-    <string name="seg_11_suffix">moins cinq</string>
-    <string name="hour_0">twelve</string>
+    <string name="seg_11_suffix"> Moins Cinq</string>
 
 </resources>
