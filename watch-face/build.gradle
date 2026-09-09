@@ -3,23 +3,23 @@ plugins {
 }
 
 android {
-    namespace 'com.psychowood.twelveish.wff'
+    namespace 'com.psychowood.twelveishredux'
     compileSdk 37
 
     defaultConfig {
-        applicationId "com.psychowood.twelveish.wff"
+        applicationId "com.psychowood.twelveishredux"
         minSdkVersion 33
         targetSdk 35
-        versionCode 500
-        versionName "1.0"
+        versionCode 501
+        versionName "2.5.0"
     }
 
     buildTypes {
-        debug {
+        release {
             minifyEnabled true
         }
 
-        release {
+        debug {
             minifyEnabled false
             shrinkResources false
         }
