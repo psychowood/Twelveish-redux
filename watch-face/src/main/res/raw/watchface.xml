@@ -120,7 +120,7 @@
         </Group>
 
         <!-- Complications -->
-        <ComplicationSlot slotId="1" supportedTypes="SHORT_TEXT EMPTY" x="75" y="350" width="80" height="80">
+        <ComplicationSlot slotId="1" supportedTypes="SHORT_TEXT LONG_TEXT RANGED_VALUE MONOCHROMATIC_IMAGE EMPTY" x="75" y="350" width="80" height="80">
             <BoundingOval x="0" y="0" width="80" height="80" />
             <DefaultProviderPolicy defaultSystemProvider="WATCH_BATTERY" defaultSystemProviderType="SHORT_TEXT" />
             <Complication type="SHORT_TEXT">
@@ -128,9 +128,25 @@
                     <Text align="CENTER"><Font family="SYNC_TO_DEVICE" size="24" color="[CONFIGURATION.main_text_color]"><Template>%s<Parameter expression="[COMPLICATION.TEXT]" /></Template></Font></Text>
                 </PartText>
             </Complication>
+            <Complication type="LONG_TEXT">
+                 <PartText x="0" y="0" width="80" height="80">
+                    <Text align="CENTER"><Font family="SYNC_TO_DEVICE" size="20" color="[CONFIGURATION.main_text_color]"><Template>%s<Parameter expression="[COMPLICATION.TEXT]" /></Template></Font></Text>
+                </PartText>
+            </Complication>
+            <Complication type="RANGED_VALUE">
+                 <PartText x="0" y="0" width="80" height="80">
+                    <Text align="CENTER"><Font family="SYNC_TO_DEVICE" size="24" color="[CONFIGURATION.main_text_color]"><Template>%s<Parameter expression="[COMPLICATION.TEXT]" /></Template></Font></Text>
+                </PartText>
+            </Complication>
+            <Complication type="MONOCHROMATIC_IMAGE">
+                 <PartImage x="20" y="20" width="40" height="40">
+                    <Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
+                 </PartImage>
+            </Complication>
             <Complication type="EMPTY" />
         </ComplicationSlot>
-        <ComplicationSlot slotId="2" supportedTypes="SHORT_TEXT EMPTY" x="295" y="350" width="80" height="80">
+
+        <ComplicationSlot slotId="2" supportedTypes="SHORT_TEXT LONG_TEXT RANGED_VALUE MONOCHROMATIC_IMAGE EMPTY" x="295" y="350" width="80" height="80">
             <BoundingOval x="0" y="0" width="80" height="80" />
             <DefaultProviderPolicy defaultSystemProvider="DATE" defaultSystemProviderType="SHORT_TEXT" />
             <Complication type="SHORT_TEXT">
@@ -138,14 +154,45 @@
                     <Text align="CENTER"><Font family="SYNC_TO_DEVICE" size="24" color="[CONFIGURATION.main_text_color]"><Template>%s<Parameter expression="[COMPLICATION.TEXT]" /></Template></Font></Text>
                 </PartText>
             </Complication>
+            <Complication type="LONG_TEXT">
+                 <PartText x="0" y="0" width="80" height="80">
+                    <Text align="CENTER"><Font family="SYNC_TO_DEVICE" size="20" color="[CONFIGURATION.main_text_color]"><Template>%s<Parameter expression="[COMPLICATION.TEXT]" /></Template></Font></Text>
+                </PartText>
+            </Complication>
+            <Complication type="RANGED_VALUE">
+                 <PartText x="0" y="0" width="80" height="80">
+                    <Text align="CENTER"><Font family="SYNC_TO_DEVICE" size="24" color="[CONFIGURATION.main_text_color]"><Template>%s<Parameter expression="[COMPLICATION.TEXT]" /></Template></Font></Text>
+                </PartText>
+            </Complication>
+            <Complication type="MONOCHROMATIC_IMAGE">
+                 <PartImage x="20" y="20" width="40" height="40">
+                    <Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
+                 </PartImage>
+            </Complication>
             <Complication type="EMPTY" />
         </ComplicationSlot>
-        <ComplicationSlot slotId="3" supportedTypes="SHORT_TEXT EMPTY" x="185" y="350" width="80" height="80">
+
+        <ComplicationSlot slotId="3" supportedTypes="SHORT_TEXT LONG_TEXT RANGED_VALUE MONOCHROMATIC_IMAGE EMPTY" x="185" y="350" width="80" height="80">
             <BoundingOval x="0" y="0" width="80" height="80" />
             <Complication type="SHORT_TEXT">
                  <PartText x="0" y="0" width="80" height="80">
                     <Text align="CENTER"><Font family="SYNC_TO_DEVICE" size="24" color="[CONFIGURATION.main_text_color]"><Template>%s<Parameter expression="[COMPLICATION.TEXT]" /></Template></Font></Text>
                 </PartText>
+            </Complication>
+            <Complication type="LONG_TEXT">
+                 <PartText x="0" y="0" width="80" height="80">
+                    <Text align="CENTER"><Font family="SYNC_TO_DEVICE" size="20" color="[CONFIGURATION.main_text_color]"><Template>%s<Parameter expression="[COMPLICATION.TEXT]" /></Template></Font></Text>
+                </PartText>
+            </Complication>
+            <Complication type="RANGED_VALUE">
+                 <PartText x="0" y="0" width="80" height="80">
+                    <Text align="CENTER"><Font family="SYNC_TO_DEVICE" size="24" color="[CONFIGURATION.main_text_color]"><Template>%s<Parameter expression="[COMPLICATION.TEXT]" /></Template></Font></Text>
+                </PartText>
+            </Complication>
+            <Complication type="MONOCHROMATIC_IMAGE">
+                 <PartImage x="20" y="20" width="40" height="40">
+                    <Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
+                 </PartImage>
             </Complication>
             <Complication type="EMPTY" />
         </ComplicationSlot>
