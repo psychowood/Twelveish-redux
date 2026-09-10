@@ -21,6 +21,7 @@
     <Scene>
         <!-- Background -->
         <PartDraw name="Background" x="0" y="0" width="450" height="450">
+            <Variant mode="AMBIENT" target="alpha" value="0" />
             <Rectangle x="0" y="0" width="450" height="450">
                 <Fill color="[CONFIGURATION.background_color]" />
             </Rectangle>
@@ -40,7 +41,7 @@
                     </Font>
                 </Text>
             </PartText>
-            <PartText name="SubInfo" x="0" y="35" width="450" height="25">
+            <PartText name="SubInfoWithBattery" x="0" y="35" width="450" height="25">
                 <Transform target="alpha" value="[CONFIGURATION.show_battery] ? 255 : 0" />
                 <Text align="CENTER">
                     <Font family="SYNC_TO_DEVICE" size="16" color="[CONFIGURATION.main_text_color]">
@@ -48,6 +49,17 @@
                             <Parameter expression="[DAY_OF_WEEK_S]" />
                             <Parameter expression="[DAY]" />
                             <Parameter expression="[BATTERY_PERCENT]" />
+                        </Template>
+                    </Font>
+                </Text>
+            </PartText>
+            <PartText name="SubInfoWithoutBattery" x="0" y="35" width="450" height="25">
+                <Transform target="alpha" value="[CONFIGURATION.show_battery] ? 0 : 255" />
+                <Text align="CENTER">
+                    <Font family="SYNC_TO_DEVICE" size="16" color="[CONFIGURATION.main_text_color]">
+                        <Template><![CDATA[%s %s]]>
+                            <Parameter expression="[DAY_OF_WEEK_S]" />
+                            <Parameter expression="[DAY]" />
                         </Template>
                     </Font>
                 </Text>
