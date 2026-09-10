@@ -15,6 +15,44 @@
     <string name="color_orange">Orange</string>
     <string name="color_blue">Blue</string>
 
+    <string name="color_gray_400" translatable="false">Gray 400</string>
+    <string name="color_gray_500" translatable="false">Gray 500</string>
+    <string name="color_gray_600" translatable="false">Gray 600</string>
+    <string name="color_gray_700" translatable="false">Gray 700</string>
+    <string name="color_gray_800" translatable="false">Gray 800</string>
+    <string name="color_gray_900" translatable="false">Gray 900</string>
+    <string name="color_red" translatable="false">Red</string>
+    <string name="color_magenta" translatable="false">Magenta</string>
+    <string name="color_yellow" translatable="false">Yellow</string>
+    <string name="color_green" translatable="false">Green</string>
+    <string name="color_cyan" translatable="false">Cyan</string>
+    <string name="color_mat_red" translatable="false">Material Red</string>
+    <string name="color_mat_pink" translatable="false">Material Pink</string>
+    <string name="color_mat_purple" translatable="false">Material Purple</string>
+    <string name="color_mat_deep_purple" translatable="false">Material Deep Purple</string>
+    <string name="color_mat_indigo" translatable="false">Material Indigo</string>
+    <string name="color_mat_blue" translatable="false">Material Blue</string>
+    <string name="color_mat_light_blue" translatable="false">Material Light Blue</string>
+    <string name="color_mat_cyan" translatable="false">Material Cyan</string>
+    <string name="color_mat_teal" translatable="false">Material Teal</string>
+    <string name="color_mat_green" translatable="false">Material Green</string>
+    <string name="color_mat_light_green" translatable="false">Material Light Green</string>
+    <string name="color_mat_lime" translatable="false">Material Lime</string>
+    <string name="color_mat_yellow" translatable="false">Material Yellow</string>
+    <string name="color_mat_amber" translatable="false">Material Amber</string>
+    <string name="color_mat_orange" translatable="false">Material Orange</string>
+    <string name="color_mat_deep_orange" translatable="false">Material Deep Orange</string>
+    <string name="color_mat_brown" translatable="false">Material Brown</string>
+    <string name="color_mat_gray" translatable="false">Material Gray</string>
+    <string name="color_mat_blue_gray" translatable="false">Material Blue Gray</string>
+    <string name="color_gold" translatable="false">Gold</string>
+    <string name="color_sunset" translatable="false">Sunset</string>
+    <string name="color_fog" translatable="false">Fog</string>
+    <string name="color_summer_red" translatable="false">Summer Red</string>
+    <string name="color_aqua" translatable="false">Aqua</string>
+    <string name="color_sun" translatable="false">Sun</string>
+    <string name="color_dawn" translatable="false">Dawn</string>
+
     <!-- Hour Names (English) -->
     <string name="hour_0">Twelve</string>
     <string name="hour_1">One</string>

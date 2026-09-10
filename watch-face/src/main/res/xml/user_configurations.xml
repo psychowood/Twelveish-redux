@@ -8,6 +8,39 @@
         <ColorOption id="0" displayName="@string/color_black" colors="#000000" />
         <ColorOption id="1" displayName="@string/color_dark_gray" colors="#222222" />
         <ColorOption id="2" displayName="@string/color_deep_blue" colors="#000033" />
+        <ColorOption id="3" displayName="@string/color_red" colors="#ff0000" />
+        <ColorOption id="4" displayName="@string/color_magenta" colors="#ff00ff" />
+        <ColorOption id="5" displayName="@string/color_yellow" colors="#ffff00" />
+        <ColorOption id="6" displayName="@string/color_green" colors="#00ff00" />
+        <ColorOption id="7" displayName="@string/color_cyan" colors="#00ffff" />
+        <ColorOption id="8" displayName="@string/color_blue" colors="#0000ff" />
+        <ColorOption id="9" displayName="@string/color_white" colors="#ffffff" />
+        <ColorOption id="10" displayName="@string/color_mat_red" colors="#A62C23" />
+        <ColorOption id="11" displayName="@string/color_mat_pink" colors="#A61646" />
+        <ColorOption id="12" displayName="@string/color_mat_purple" colors="#9224A6" />
+        <ColorOption id="13" displayName="@string/color_mat_deep_purple" colors="#5E35A6" />
+        <ColorOption id="14" displayName="@string/color_mat_indigo" colors="#3A4AA6" />
+        <ColorOption id="15" displayName="@string/color_mat_blue" colors="#1766A6" />
+        <ColorOption id="16" displayName="@string/color_mat_light_blue" colors="#0272A6" />
+        <ColorOption id="17" displayName="@string/color_mat_cyan" colors="#0092A6" />
+        <ColorOption id="18" displayName="@string/color_mat_teal" colors="#00A695" />
+        <ColorOption id="19" displayName="@string/color_mat_green" colors="#47A64A" />
+        <ColorOption id="20" displayName="@string/color_mat_light_green" colors="#76A63F" />
+        <ColorOption id="21" displayName="@string/color_mat_lime" colors="#99A62B" />
+        <ColorOption id="22" displayName="@string/color_mat_yellow" colors="#A69926" />
+        <ColorOption id="23" displayName="@string/color_mat_amber" colors="#A67E05" />
+        <ColorOption id="24" displayName="@string/color_mat_orange" colors="#A66300" />
+        <ColorOption id="25" displayName="@string/color_mat_deep_orange" colors="#A63716" />
+        <ColorOption id="26" displayName="@string/color_mat_brown" colors="#A67563" />
+        <ColorOption id="27" displayName="@string/color_mat_gray" colors="#676767" />
+        <ColorOption id="28" displayName="@string/color_mat_blue_gray" colors="#7295A6" />
+        <ColorOption id="29" displayName="@string/color_gold" colors="#FFD700" />
+        <ColorOption id="30" displayName="@string/color_sunset" colors="#F8B195" />
+        <ColorOption id="31" displayName="@string/color_fog" colors="#A8A7A7" />
+        <ColorOption id="32" displayName="@string/color_summer_red" colors="#fe4a49" />
+        <ColorOption id="33" displayName="@string/color_aqua" colors="#2ab7ca" />
+        <ColorOption id="34" displayName="@string/color_sun" colors="#fed766" />
+        <ColorOption id="35" displayName="@string/color_dawn" colors="#451e3e" />
     </ColorConfiguration>
 
     <!-- Main Text Color -->
@@ -18,6 +51,44 @@
         <ColorOption id="0" displayName="@string/color_white" colors="#FFFFFF" />
         <ColorOption id="1" displayName="@string/color_orange" colors="#FF9800" />
         <ColorOption id="2" displayName="@string/color_blue" colors="#2196F3" />
+        <ColorOption id="3" displayName="@string/color_gray_400" colors="#bdbdbd" />
+        <ColorOption id="4" displayName="@string/color_gray_500" colors="#9e9e9e" />
+        <ColorOption id="5" displayName="@string/color_gray_600" colors="#757575" />
+        <ColorOption id="6" displayName="@string/color_gray_700" colors="#616161" />
+        <ColorOption id="7" displayName="@string/color_gray_800" colors="#424242" />
+        <ColorOption id="8" displayName="@string/color_gray_900" colors="#212121" />
+        <ColorOption id="9" displayName="@string/color_black" colors="#000000" />
+        <ColorOption id="10" displayName="@string/color_red" colors="#ff0000" />
+        <ColorOption id="11" displayName="@string/color_magenta" colors="#ff00ff" />
+        <ColorOption id="12" displayName="@string/color_yellow" colors="#ffff00" />
+        <ColorOption id="13" displayName="@string/color_green" colors="#00ff00" />
+        <ColorOption id="14" displayName="@string/color_cyan" colors="#00ffff" />
+        <ColorOption id="15" displayName="@string/color_mat_red" colors="#A62C23" />
+        <ColorOption id="16" displayName="@string/color_mat_pink" colors="#A61646" />
+        <ColorOption id="17" displayName="@string/color_mat_purple" colors="#9224A6" />
+        <ColorOption id="18" displayName="@string/color_mat_deep_purple" colors="#5E35A6" />
+        <ColorOption id="19" displayName="@string/color_mat_indigo" colors="#3A4AA6" />
+        <ColorOption id="20" displayName="@string/color_mat_blue" colors="#1766A6" />
+        <ColorOption id="21" displayName="@string/color_mat_light_blue" colors="#0272A6" />
+        <ColorOption id="22" displayName="@string/color_mat_cyan" colors="#0092A6" />
+        <ColorOption id="23" displayName="@string/color_mat_teal" colors="#00A695" />
+        <ColorOption id="24" displayName="@string/color_mat_green" colors="#47A64A" />
+        <ColorOption id="25" displayName="@string/color_mat_light_green" colors="#76A63F" />
+        <ColorOption id="26" displayName="@string/color_mat_lime" colors="#99A62B" />
+        <ColorOption id="27" displayName="@string/color_mat_yellow" colors="#A69926" />
+        <ColorOption id="28" displayName="@string/color_mat_amber" colors="#A67E05" />
+        <ColorOption id="29" displayName="@string/color_mat_orange" colors="#A66300" />
+        <ColorOption id="30" displayName="@string/color_mat_deep_orange" colors="#A63716" />
+        <ColorOption id="31" displayName="@string/color_mat_brown" colors="#A67563" />
+        <ColorOption id="32" displayName="@string/color_mat_gray" colors="#676767" />
+        <ColorOption id="33" displayName="@string/color_mat_blue_gray" colors="#7295A6" />
+        <ColorOption id="34" displayName="@string/color_gold" colors="#FFD700" />
+        <ColorOption id="35" displayName="@string/color_sunset" colors="#F8B195" />
+        <ColorOption id="36" displayName="@string/color_fog" colors="#A8A7A7" />
+        <ColorOption id="37" displayName="@string/color_summer_red" colors="#fe4a49" />
+        <ColorOption id="38" displayName="@string/color_aqua" colors="#2ab7ca" />
+        <ColorOption id="39" displayName="@string/color_sun" colors="#fed766" />
+        <ColorOption id="40" displayName="@string/color_dawn" colors="#451e3e" />
     </ColorConfiguration>
 
     <!-- Visibility Toggles -->
